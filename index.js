@@ -9,6 +9,7 @@ Free Hosting forever!                                            /____/
 const chalk = require('chalk');
 const fs = require('fs');
 global.config = require("./config.json"); // Edit example-config.json
+require("dotenv").config();
 global.Discord = require("discord.js"); 
 global.client = new Discord.Client({
     //I've given it all intents Remove any you think it might not need :)
@@ -22,4 +23,8 @@ global.client = new Discord.Client({
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
 //Bot login
-client.login(config.DiscordBot.Token);
+client.login(process.env.Token);
+
+client.on("ready", () => {
+    console.log('Ready, Logged into as ' + client.user.username)
+})
