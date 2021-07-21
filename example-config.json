@@ -26,14 +26,14 @@
       "mute": "Muted role ID"
     },
     "DiscordChannels": {
-      "TicketVC": "",
-      "BotsVC": "",
-      "TotalMembersVC": "",
-      "MembersVC": "",
-      "StaffVC": "",
-      "ServersVC": "",
-      "ClientsVC": "",
-      "BoostsVC": ""
+      "TicketVC": "Vc Channel ID Lists the number of tickets",
+      "BotsVC": "Vc or channel ID Shows how many bots are in the server",
+      "TotalMembersVC": "Vc or Channel ID to show how many members In total there are",
+      "MembersVC": "VC or Channel ID To show how many Humans there are",
+      "StaffVC": "Vc or Channel ID how many staff are in the server",
+      "ServersVC": "Vc or Channel ID It shows how many servers are being ran on the host",
+      "ClientsVC": "Vc or Channel ID it shows how many people are registed to the host",
+      "BoostsVC": "Vc or Channel ID shows how many people have boosted the server"
     },
     "invitechannel": "Invite logs channel ID",
     "inviterewmsg": "Invite reward message channel ID",
