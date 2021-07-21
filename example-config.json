@@ -1,4 +1,6 @@
 {
+	"prefix": "DBH!",
+	"missing_permission": "You require the `{PERMISSION}` permission to use this command.",
   "Port": 1144,
   "APIPort": 1145,
   "externalPassword": "This should be the same password as the one thats in the daemon config.json (This is how they talk together)",
