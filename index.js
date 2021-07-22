@@ -22,9 +22,9 @@ global.client = new Discord.Client({
     restWsBridgetimeout: 100,
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
-//Bot login
-client.login(process.env.Token);
 
 client.on("ready", () => {
     console.log('Ready, Logged into as ' + client.user.username)
 })
+
+client.login(process.env.Token);
