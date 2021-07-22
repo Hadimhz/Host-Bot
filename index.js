@@ -49,8 +49,4 @@ loadCommands(`${ROOT_PATH}/commands`).then(x => {
     console.log(chalk.bgCyan("[CommandHandler]"), `Loaded a total of ${x.logs.stats.commands} commands in ${x.logs.stats.categories} categories.`);
 })
 
-client.on("ready", () => {
-    console.log('Ready, Logged in as ' + client.user.tag);
-});
-
 client.login(process.env.Token); // Login to Discord

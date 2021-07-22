@@ -5,6 +5,7 @@
   "Port": 1144,
   "APIPort": 1145,
   "externalPassword": "This should be the same password as the one thats in the daemon config.json (This is how they talk together)",
+  "mongoPath": "The mongodb server connection url",
   "Pterodactyl": {
     "hosturl": "Your pterodactyl panel. dont forget the https",
     "apikey": "your admin api key",

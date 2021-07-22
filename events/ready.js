@@ -1,7 +1,15 @@
 const { client } = require('../index.js')
 const config = require('../config.json')
 const exec = require('child_process').exec;
+const chalk = require('chalk')
+const mongo = require('../mongo');
+
 client.on('ready', async (client) => {
+    console.log(`${chalk.greenBright("[BOT]")} Bot ready and logged in as ${client.user.tag}`)
+    await mongo().then(mongoose => {
+        console.log(`${chalk.green("[DATABASE]")} Connected to databse successfully!`)
+    });
+
     console.log(config.DiscordBot.DiscordChannels.gitlogs)
     setInterval(() => {
         exec(`git pull`, (error, stdout) => {
