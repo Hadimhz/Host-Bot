@@ -10,6 +10,8 @@ This is DBH's Official Discord bot.
 
 ## Info
 
+Come Join the rewrite server :D [Click here](https://discord.gg/V3KvPQET5v)
+
 Do you want to help? If so its very simple :D, Just Fork the repo Make a few changes the make a Pull request. (Note, Make sure the code doesn't break the bot before making a PR)
 
 This Uses Solo's(Hadimhz) Command Handler you can check out the non modified version [here](https://github.com/Hadimhz/Discord-Bot)
