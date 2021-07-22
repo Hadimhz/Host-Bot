@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const { toPush } = require('../utils')
 
 /**
  * @param {String} Username Users username

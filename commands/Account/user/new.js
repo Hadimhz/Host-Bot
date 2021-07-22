@@ -49,8 +49,7 @@ module.exports.run = async (client, message, args) => {
     })
 
     // Locate the category
-    let category = message.guild.channels.cache.find(c => c.id == config.DiscordCategories.AccountsCategory && c.type == "category")
-    if (!category) throw new Error("Category channel does not exist");
+    let category = message.guild.channels.cache.get(config.DiscordCategories.AccountsCategory)
 
     let channel = await message.guild.channels.create(message.author.tag, {
         parent: category.id,
@@ -61,16 +60,16 @@ module.exports.run = async (client, message, args) => {
             },
             {
                 id: message.guild.id,
-                deny: 0x400
+                deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
             }
         ]
     }).catch(e => console.error(e));
 
-    channel.updateOverwrite(message.author, {
-        VIEW_CHANNEL: true,
-        SEND_MESSAGES: true,
-        READ_MESSAGE_HISTORY: true
-    })
+    // channel.updateOverwrite(message.author, {
+    //     VIEW_CHANNEL: true,
+    //     SEND_MESSAGES: true,
+    //     READ_MESSAGE_HISTORY: true
+    // })
 
     // Tell the user to check the channel.
     message.reply(`Please check <#${channel.id}> to create an account.`);
@@ -79,19 +78,22 @@ module.exports.run = async (client, message, args) => {
 
     for (let question of questions) {
         if (msg == null) {
-            msg = await channel.send(message.member, {
-                embed: new Discord.MessageEmbed()
+            msg = await channel.send({
+                content: `<@!${message.member.id}>`,
+                embeds: [new Discord.MessageEmbed()
                     .setColor(0x36393e)
                     .setDescription(question.question)
-                    .setFooter("You can type 'cancel' to cancel the request")
+                    .setFooter("You can type 'cancel' to cancel the request")]
             });
         } else {
-            msg.edit(message.member, {
-                embed: msg.embeds[0].setDescription(question.question)
+            msg.edit({
+                content: `<@!${message.member.id}>`,
+                embeds: [msg.embeds[0].setDescription(question.question)]
             });
         }
 
-        let awaitMessages = await channel.awaitMessages(question.filter, {
+        let awaitMessages = await channel.awaitMessages({
+            filter: (m) => m.author.id === message.author.id,
             max: 1,
             time: question.time,
             errors: ['time'],
@@ -132,10 +134,11 @@ module.exports.run = async (client, message, args) => {
 
     }
 
-    msg.edit(message.member, {
-        embed: msg.embeds[0]
+    msg.edit({
+        content: `<@!${message.member.id}>`,
+        embeds: [msg.embeds[0]
             .setDescription('Attempting to create an account for you...\n\n>>> ' + questions.map(question => `**${question.id}:** ${question.value.toLowerCase()}`).join('\n'))
-            .setFooter('').setTimestamp()
+            .setFooter('').setTimestamp()]
     });
 
     const data = {
@@ -163,14 +166,14 @@ module.exports.run = async (client, message, args) => {
 
             msg.edit({
                 content: "Hello! You created an new account, Heres the login information",
-                embed: new Discord.MessageEmbed()
+                embeds: [new Discord.MessageEmbed()
                     .setColor("GREEN")
                     .setDescription("URL: " + config.Pterodactyl.hosturl + " \nUsername: " + data.username + " \nEmail: " + data.email + " \nPassword: " + data.password)
-                    .setFooter("Please note: It is recommended that you change the password")
+                    .setFooter("Please note: It is recommended that you change the password")]
             })
 
             channel.send('**You have 30mins to keep note of this info before the channel is deleted.**')
-            message.guild.members.cache.get(message.author.id).roles.add("639489891016638496");
+            message.guild.members.cache.get(message.author.id).roles.add(config.DiscordRoles.client);
             setTimeout(function () {
                 channel.delete();
             }, 1800000);
@@ -192,8 +195,8 @@ module.exports.run = async (client, message, args) => {
             }
 
             msg.edit({
-                content: '',
-                embed: errEmbed
+                content: '\u200b',
+                embeds: [errEmbed]
             })
             setTimeout(function () {
                 channel.delete();
