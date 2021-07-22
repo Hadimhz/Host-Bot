@@ -1,4 +1,7 @@
 {
+  "guild": "Main Guild ID",
+  "prefix": "Bots Prefix",
+  "missing_permission": "You require the `{PERMISSION}` permission to use this command.",
   "Port": 1144,
   "APIPort": 1145,
   "externalPassword": "This should be the same password as the one thats in the daemon config.json (This is how they talk together)",
@@ -8,7 +11,6 @@
     "apikeyclient": "your client api key"
   },
   "DiscordBot": {
-    "mainGuild": "Main guild For the host",
     "clientID": "Bot client ID",
     "clientSecret": "Bot client secret",
     "callbackURL": "callback url after logging into the site. should end with /api/callback",

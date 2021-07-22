@@ -1,7 +1,8 @@
 const chalk = require('chalk');
 const { MessageEmbed } = require('discord.js');
 const { findCommand } = require('../utils/commandHandler.js');
-
+const { client } = require('../index.js')
+const config = require("../config.json")
 client.on('messageCreate', async (message) => {
     if (message.channel.type == 'dm' || message.author.bot == true || message.guild.id != config.guild || !message.content.startsWith(config.prefix)) return;
 

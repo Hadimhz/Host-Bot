@@ -3,3 +3,4 @@ package-lock.json
 config.json
 .git
 .env
+log.json
