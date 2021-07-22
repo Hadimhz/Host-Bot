@@ -41,11 +41,17 @@ let questions = [
     }
 ];
 
-// Locate the category
-let category = message.guild.channels.cache.find(c => c.id == config.DiscordCategories.AccountsCategory && c.type == "category")
-if (!category) throw new Error("Category channel does not exist");
+module.exports.run = async (client, message, args) => {
+    // Check to see if they already have an account
+    const userData = await UserData.findOne({ userID: message.author.id });
+    if (userData) return message.reply({
+        content: "You already have a `panel account` linked to your discord account!"
+    })
 
-module.exports.run = (client, message, args) => {
+    // Locate the category
+    let category = message.guild.channels.cache.find(c => c.id == config.DiscordCategories.AccountsCategory && c.type == "category")
+    if (!category) throw new Error("Category channel does not exist");
+
     let channel = await message.guild.channels.create(message.author.tag, {
         parent: category.id,
         permissionOverwrites: [
