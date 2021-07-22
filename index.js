@@ -13,6 +13,9 @@ const { loadCommands } = require('./utils/commandHandler');
 const config = require("./config.json"); // Edit example-config.json
 require("dotenv").config();
 const Discord = require("discord.js");
+const panel = require('./wrapper/index').Application;
+
+panel.login(config.Pterodactyl.hosturl, config.Pterodactyl.apikey)
 
 const client = new Discord.Client({
     //I've given it all intents Remove any you think it might not need :)
@@ -27,6 +30,7 @@ const client = new Discord.Client({
 
 exports.client = client;
 global.ROOT_PATH = __dirname;
+exports.panel = panel;
 
 // Event Handler
 let events = fs.readdirSync(ROOT_PATH + '/events').filter(x => x.endsWith(".js"));
