@@ -34,6 +34,14 @@
     "invitechannel": "Invite logs channel ID",
     "inviterewmsg": "Invite reward message channel ID"
   },
+  "DiscordCategories": {
+    "TicketsCategories": [
+      "The category ID tickets will be made",
+      "additional so it does not",
+      "overflow"
+    ],
+    "AccountsCategory": "The category ID in which the channels to create user accounts will be made"
+  },
   "DiscordRoles": {
     "member": "Member role ID",
     "client": "Client role ID",
