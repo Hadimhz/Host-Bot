@@ -10,7 +10,7 @@ client.on('ready', async (client) => {
         console.log(`${chalk.green("[DATABASE]")} Connected to databse successfully!`)
     });
 
-    console.log(config.DiscordBot.DiscordChannels.gitlogs)
+    console.log(config.DiscordChannels.gitlogs)
     setInterval(() => {
         exec(`git pull`, (error, stdout) => {
             let response = (error || stdout);
