@@ -18,9 +18,9 @@ const panel = require('./wrapper/index').Application;
 panel.login(config.Pterodactyl.hosturl, config.Pterodactyl.apikey)
 
 const client = new Discord.Client({
-    //I've given it all intents Remove any you think it might not need :)
+    //I've removed any intents that seemd useless, Add them as you need
     intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES", "GUILD_MESSAGE_REACTIONS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INVITES"],
-    //Made it where it can only ping Users, Stops people from pinging @everyone or @members
+    //The bot can only ping users, This way if someone founds a exploit it can't ping that many users
     allowedMentions: {
         parse: ['users'],
         repliedUser: true
