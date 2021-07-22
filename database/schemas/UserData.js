@@ -1,10 +1,35 @@
 const mongoose = require('mongoose');
 
-const UserDataSchema = new mongoose.Schema({
+const reqString = {
+    type: mongoose.SchemaTypes.String,
+    required: true
+}
 
-    userID: {
-        type: mongoose.SchemaTypes.String,
+const UserDataSchema = new mongoose.Schema({
+    // User's discord ID
+    userID: reqString,
+    
+    // User's console ID
+    consoleID: reqString,
+
+    // User's console email
+    email: reqString,
+
+    // User's console username
+    username: reqString,
+
+    // Timestamp when the account was created
+    createdTimestamp: {
+        type: mongoose.SchemaTypes.Date,
         required: true
+    },
+
+    // Domains the user has proxied
+    domains: {
+        type: mongoose.SchemaTypes.Array,
+        required: true,
+        default: []
     }
-    // Add more which are needed
 })
+
+module.exports = mongoose.model('UserData', UserDataSchema);
