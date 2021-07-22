@@ -1,6 +1,6 @@
 const { Collection, Permissions } = require('discord.js')
 const fs = require('fs');
-
+const config = require('../config.json')
 let log = {
     categories: [],
     errors: [],
