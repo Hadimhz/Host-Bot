@@ -16,7 +16,11 @@ global.Discord = require("discord.js");
 
 global.client = new Discord.Client({
     //I've given it all intents Remove any you think it might not need :)
-    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"],
+    intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS",
+        "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES",
+        "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES",
+        "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES",
+        "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"],
 
     //Made it where it can only ping Users, Stops people from pinging @everyone or @members
     allowedMentions: {
@@ -41,7 +45,7 @@ events.forEach(x => {
 
 loadCommands(`${ROOT_PATH}/commands`).then(x => {
     // console.log(x);
-    fs.writeFileSync(ROOT_PATH + '/../log.json', JSON.stringify(x.logs, null, 2));
+    fs.writeFileSync(ROOT_PATH + './log.json', JSON.stringify(x.logs, null, 2));
     client.commands = x.commandsCol;
 
     if (x.logs.stats.errors != 0)
