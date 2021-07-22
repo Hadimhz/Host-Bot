@@ -12,7 +12,7 @@ let toPush = (input, start) => {
                 endedAt: Date.now(),
             }
         };
-    }
+    };
 
     if (input.length != null) {
         input = input.map(x => {
@@ -25,10 +25,10 @@ let toPush = (input, start) => {
                         x.extras[key] = x.relationships[key].data.map(a => a.attributes);
                     else
                         x.extras[key] = x.relationships[key];
-                })
-            }
+                });
+            };
             return x;
-        })
+        });
     } else {
         if (input.attributes != null) input = input.attributes;
 
@@ -40,14 +40,14 @@ let toPush = (input, start) => {
                     input.extras[key] = input.relationships[key].data.map(a => a.attributes);
                 else
                     input.extras[key] = input.relationships[key];
-            })
+            });
             delete input.relationships;
-        }
-    }
+        };
+    };
 
     let toReturn = {
         success: true
-    }
+    };
 
     if (input != null)
         toReturn.data = (input.length == 1 ? input[0] : input);
@@ -56,7 +56,7 @@ let toPush = (input, start) => {
         total_amount: (input != null ? (input.length != null ? input.length : 1) : 0),
         startedAt: start,
         endedAt: Date.now(),
-    }
+    };
 
     return toReturn;
 };
@@ -65,16 +65,16 @@ let toIncludes = (options) => {
     let include = [];
     if (Object.values(options).includes(true)) {
         include = [];
-        const entries = Object.entries(options)
+        const entries = Object.entries(options);
         for (const [flags, value] of entries) {
             if (value == true) include.push(flags);
-        }
-    }
+        };
+    };
 
     return include;
-}
+};
 
 module.exports = {
     toPush: toPush,
     toIncludes: toIncludes,
-}
+};
