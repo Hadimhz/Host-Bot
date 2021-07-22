@@ -5,5 +5,5 @@ module.exports.run = (client, message, args) => {
 module.exports.info = {
     name: "new",
     description: "Creates a new panel account",
-    aliases: ['un'],
+    aliases: ['n'],
 }
