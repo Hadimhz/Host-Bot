@@ -10,11 +10,11 @@ Free Hosting forever!                                            /____/
 const chalk = require('chalk');
 const fs = require('fs');
 const { loadCommands } = require('./utils/commandHandler');
-global.config = require("./config.json"); // Edit example-config.json
+const config = require("./config.json"); // Edit example-config.json
 require("dotenv").config();
-global.Discord = require("discord.js");
+const Discord = require("discord.js");
 
-global.client = new Discord.Client({
+const client = new Discord.Client({
     //I've given it all intents Remove any you think it might not need :)
     intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS",
         "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES",
