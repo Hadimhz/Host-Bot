@@ -15,7 +15,7 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
 
-panel.login(config.Pterodactyl.hosturl, config.Pterodactyl.apikey)
+panel.login(config.Pterodactyl.hosturl, config.Pterodactyl.apikey);
 
 const client = new Discord.Client({
     //I've removed any intents that seemd useless, Add them as you need
@@ -39,7 +39,7 @@ events.forEach(x => {
         require('./events/' + x);
     } catch (error) {
         console.log(chalk.bgRedBright("[ERROR]"), `An error occured while trying to load the ${x} event ` + error.stack);
-    }
+    };
 });
 
 loadCommands(`${ROOT_PATH}/commands`).then(x => {
@@ -51,6 +51,6 @@ loadCommands(`${ROOT_PATH}/commands`).then(x => {
         console.log(chalk.bgRedBright("[ERROR]"), `An error occured while loading commands, please check`, chalk.bgWhite("log.json"), `for more information.`);
 
     console.log(chalk.bgCyan("[CommandHandler]"), `Loaded a total of ${x.logs.stats.commands} commands in ${x.logs.stats.categories} categories.`);
-})
+});
 
 client.login(process.env.Token); // Login to Discord

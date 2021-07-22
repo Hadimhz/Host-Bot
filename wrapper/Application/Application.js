@@ -28,11 +28,12 @@ let initialize = (HostURL, APIKey) => {
     login = {
         url: HostURL,
         APIKey: APIKey.trim()
-    }
-}
+    };
+};
+
 let credential = () => {
     return login;
-}
+};
 
 module.exports = {
     login: initialize,
@@ -59,4 +60,4 @@ module.exports = {
 
     // patch Requests
     updateUser: updateUser,
-}
+};
