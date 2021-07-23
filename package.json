@@ -2,7 +2,7 @@
   "dependencies": {
     "chalk": "^4.1.1",
     "child_process": "^1.0.2",
-    "discord.js": "^13.0.0-dev.1e90be8.1626825831",
+    "discord.js": "^13.0.0-dev.c8ca7bf.1627041776",
     "dotenv": "^10.0.0",
     "humanize-duration": "^3.27.0",
     "mongoose": "^5.13.3",
