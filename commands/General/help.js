@@ -18,7 +18,7 @@ module.exports.run = (client, message, args) => {
         if (cmd == null) {
             embed.setDescription(`Couldn't find a command with the name ${args[0]}.`).setColor("RED");
         } else {
-            let usage = config.prefix + cmd.usage;
+            let usage = config.discord.bot.prefix + cmd.usage;
 
             let aliases = "`" + cmd.aliases.join('`, `') + "`";
             let subCommands = cmd.subCommands != null ? `\`${cmd.subCommands.map(x => x.name).join('`, `')}\`` : null;

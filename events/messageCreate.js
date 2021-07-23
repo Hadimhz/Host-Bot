@@ -5,14 +5,10 @@ const { client } = require("../index");
 const chalk = require("chalk");
 
 client.on('messageCreate', async (message) => {
-    if (
-        message.channel.type == "dm" ||
-        message.author.bot ||
-        message.guild.id != config.guild ||
-        !message.content.startsWith(config.prefix)
-    ) return;
+    if (message.channel.type == "dm" || message.author.bot
+        || message.guild.id != config.discord.guild || !message.content.startsWith(config.discord.bot.prefix)) return;
 
-    let args = message.content.trim().slice(config.prefix.length).split(/ +/);
+    let args = message.content.trim().slice(config.discord.bot.prefix.length).split(/ +/);
 
     let cmd = findCommand([...args], client.commands, message);
 

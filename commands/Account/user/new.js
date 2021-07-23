@@ -41,7 +41,7 @@ module.exports.run = async (client, message, args) => {
     })
 
     // Locate the category
-    let category = message.guild.channels.cache.get(config.DiscordCategories.AccountsCategory)
+    let category = message.guild.channels.cache.get(config.discord.categories.accountCreation)
 
     let channel = await message.guild.channels.create(message.author.tag, {
         parent: category.id,
@@ -161,13 +161,13 @@ module.exports.run = async (client, message, args) => {
                     content: "Hello! You created an new account, Heres the login information",
                     embeds: [new Discord.MessageEmbed()
                         .setColor("GREEN")
-                        .setDescription("URL: " + config.Pterodactyl.hosturl + "\n" + "Username: " + data.username
+                        .setDescription("URL: " + config.pterodactyl.hosturl + "\n" + "Username: " + data.username
                             + "\n" + "Email: " + data.email + " \nPassword: " + data.password)
                         .setFooter("Please note: It is recommended that you change the password")]
                 })
 
                 channel.send('**You have 30mins to keep note of this info before the channel is deleted.**')
-                message.guild.members.cache.get(message.author.id).roles.add(config.DiscordRoles.client);
+                message.guild.members.cache.get(message.author.id).roles.add(config.discord.roles.client);
                 setTimeout(function () {
                     channel.delete();
                 }, 1800000);

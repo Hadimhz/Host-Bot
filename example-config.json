@@ -1,63 +1,73 @@
 {
-  "guild": "Main Guild ID",
-  "prefix": "Bots Prefix",
   "missing_permission": "You require the `{PERMISSION}` permission to use this command.",
   "Port": 1144,
   "APIPort": 1145,
   "externalPassword": "This should be the same password as the one thats in the daemon config.json (This is how they talk together)",
+
   "mongoPath": "The mongodb server connection url",
-  "Pterodactyl": {
+
+  "pterodactyl": {
     "hosturl": "Your pterodactyl panel. dont forget the https",
     "apikey": "your admin api key",
     "apikeyclient": "your client api key"
   },
-  "DiscordBot": {
-    "clientID": "Bot client ID",
-    "clientSecret": "Bot client secret",
-    "callbackURL": "callback url after logging into the site. should end with /api/callback",
-    "ownerID": "Owner ID (For owner only commands)"
-  },
-  "DiscordChannels": {
-    "TicketVC": "Vc Channel ID Lists the number of tickets",
-    "BotsVC": "Vc or channel ID Shows how many bots are in the server",
-    "TotalMembersVC": "Vc or Channel ID to show how many members In total there are",
-    "MembersVC": "VC or Channel ID To show how many Humans there are",
-    "StaffVC": "Vc or Channel ID how many staff are in the server",
-    "ServersVC": "Vc or Channel ID It shows how many servers are being ran on the host",
-    "ClientsVC": "Vc or Channel ID it shows how many people are registed to the host",
-    "BoostsVC": "Vc or Channel ID shows how many people have boosted the server",
-    "mLogs": "Message logs channel ID",
-    "oLogs": "Other logs channel ID",
-    "modLogs": "Mod logs channel ID",
-    "requestsChannel": "Channel that request are in. This isnt used yet but will be soon",
-    "welcome": "Welcome channel ID",
-    "invitechannel": "Invite logs channel ID",
-    "inviterewmsg": "Invite reward message channel ID"
-  },
-  "DiscordCategories": {
-    "TicketsCategories": [
-      "The category ID tickets will be made",
-      "additional so it does not",
-      "overflow"
-    ],
-    "AccountsCategory": "The category ID in which the channels to create user accounts will be made"
-  },
-  "DiscordRoles": {
-    "member": "Member role ID",
-    "client": "Client role ID",
-    "bot": "Bot role ID",
-    "staff": "Staff role ID (Used for staff commands)",
-    "mute": "Muted role ID",
-    "invites": {
-      "5": "5+ invites role ID",
-      "10": "10+ invites role ID",
-      "25": "25+ invites role ID",
-      "50": "50+ invites role ID",
-      "100": "100+ invites role ID",
-      "150": "150+ invites role ID",
-      "200": "200+ invites role ID"
+
+  "discord": {
+
+    "guild": "Main Guild ID",
+    "bot": {
+      "prefix": "Bots Prefix",
+      "clientID": "Bot client ID",
+      "clientSecret": "Bot client secret",
+      "callbackURL": "callback url after logging into the site. should end with /api/callback",
+      "ownerID": "Owner ID (For owner only commands)"
+    },
+
+    "channels": {
+      "ticketVC": "Vc Channel ID Lists the number of tickets",
+      "botsVC": "Vc or channel ID Shows how many bots are in the server",
+      "totalMembersVC": "Vc or Channel ID to show how many members In total there are",
+      "membersVC": "VC or Channel ID To show how many Humans there are",
+      "staffVC": "Vc or Channel ID how many staff are in the server",
+      "serversVC": "Vc or Channel ID It shows how many servers are being ran on the host",
+      "clientsVC": "Vc or Channel ID it shows how many people are registed to the host",
+      "boostsVC": "Vc or Channel ID shows how many people have boosted the server",
+      "mLogs": "Message logs channel ID",
+      "oLogs": "Other logs channel ID",
+      "modLogs": "Mod logs channel ID",
+      "requestsChannel": "Channel that request are in. This isnt used yet but will be soon",
+      "welcome": "Welcome channel ID",
+      "invitechannel": "Invite logs channel ID",
+      "inviterewmsg": "Invite reward message channel ID"
+    },
+
+    "categories": {
+      "tickets": [
+        "The category ID tickets will be made",
+        "additional so it does not",
+        "overflow"
+      ],
+      "accountCreation": "The category ID in which the channels to create user accounts will be made"
+    },
+
+    "roles": {
+      "member": "Member role ID",
+      "client": "Client role ID",
+      "bot": "Bot role ID",
+      "staff": "Staff role ID (Used for staff commands)",
+      "mute": "Muted role ID",
+      "invites": {
+        "5": "5+ invites role ID",
+        "10": "10+ invites role ID",
+        "25": "25+ invites role ID",
+        "50": "50+ invites role ID",
+        "100": "100+ invites role ID",
+        "150": "150+ invites role ID",
+        "200": "200+ invites role ID"
+      }
     }
   },
+
   "Email": {
     "Host": "SMTP url",
     "Port": "587",
@@ -65,6 +75,7 @@
     "Password": "SMTP password",
     "From": "Email sent from"
   },
+  
   "SSH": {
     "Host": "Reverse proxy IP",
     "User": "root",

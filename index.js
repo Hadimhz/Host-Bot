@@ -15,7 +15,7 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
 
-panel.login(config.Pterodactyl.hosturl, config.Pterodactyl.apikey);
+panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
 const client = new Discord.Client({
     //I've removed any intents that seemd useless, Add them as you need
