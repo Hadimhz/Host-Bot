@@ -31,12 +31,12 @@ module.exports.run = (client, message, args) => {
             .setThumbnail(`${message.guild.iconURL({ dynamic:true })}`)
             .setColor(message.guild.me.displayHexColor)
             .setTimestamp()
-            client.channels.cache.get(config.DiscordChannels.modLogs).send({embed: embed})
+            client.channels.cache.get(config.DiscordChannels.modLogs).send({embeds: [embed]})
         })
 
         .catch((error) => {
-          message.channel.send(`\`\`\`js\n${error}\`\`\``)
-        })
+            message.channel.send(`\`\`\`js\n${error}\`\`\``)
+          })
 }
 
 module.exports.info = {
