@@ -5,13 +5,13 @@ const { toPush } = require('../utils');
 /**
  * @param {Number} userID User's ID
  * @param {object} data things you want to update
- * @param {String} data.username Users username
- * @param {String} data.password Users password
- * @param {String} data.email Users email
- * @param {String} data.first_name Users first name
- * @param {String} data.last_name Users last name
- * @param {Boolean} data.root_admin Is the user admin? (true/false)
- * @param {String} data.language Language, Normally [en/fr]
+ * @param {String?} data.username Users username
+ * @param {String?} data.password Users password
+ * @param {String?} data.email Users email
+ * @param {String?} data.first_name Users first name
+ * @param {String?} data.last_name Users last name
+ * @param {Boolean?} data.root_admin Is the user admin? (true/false)
+ * @param {String?} data.language Language, Normally [en/fr]
  */
 async function createUser(UserID, data) {
     let cred = require('../Application').cred();
@@ -51,17 +51,17 @@ async function createUser(UserID, data) {
             },
         });
 
-        let data = await res.json();
-        if (data.errors != null) {
+        let resData = await res.json();
+        if (resData.errors != null) {
             return resolve({
                 success: false,
-                error: (data.errors.length == 1 ? data.errors[0] : data.errors),
+                error: (resData.errors.length == 1 ? resData.errors[0] : resData.errors),
                 info: {
                     startedAt: start,
                     endedAt: Date.now(),
                 }
             });
-        } else return resolve(toPush(data, start))
+        } else return resolve(toPush(resData, start))
     });
 }
 
