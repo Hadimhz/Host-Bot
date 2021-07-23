@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const config = require("../../config.json")
 module.exports.run = (client, message, args) => {
   
-if(!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send(`🚧 | You do not have enough permissions to use this command.`)
+        if(!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send(`🚧 | You do not have enough permissions to use this command.`)
 
         let user = message.mentions.users.first()
         let member = message.mentions.members.first()
