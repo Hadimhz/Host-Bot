@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const config = require("../../config.json")
 module.exports.run = (client, message, args) => {
   
-        if(!message.member.roles.cache.find(r => r.id === config.DiscordRoles.staff)) {
+if(!message.member.roles.cache.find(r => r.id === config.DiscordRoles.staff)) {
             return message.channel.send(`🚧 | You **do not** have enough **permissions** to use this **command**.`)
         }
 
@@ -10,19 +10,19 @@ module.exports.run = (client, message, args) => {
 
         const embed = new Discord.MessageEmbed()
         .setAuthor(`${client.user.username} | Purge`, client.user.avatarURL())
-        .addField(`❓ | Usage:`, `> ${prefix}purge <amount> <@someone>`)
+        .addField(`❓ | Usage:`, `> ${prefix}purge <amount> <@someone> <reason>`)
         .addField(`💡 | Example:`, `> ${prefix}purge 20 @mqrkelich`)
         .setColor(message.guild.me.displayHexColor)
         .setTimestamp()
 
-        if(!args[0]) return message.channel.send(embed);
+        if(!args[0]) return message.channel.send({embeds: [embed]}) 
 
         let user = message.mentions.users.first()
         let amount = !!parseInt(message.content.split(' ')[2]) ? parseInt(message.content.split(' ')[2]) : parseInt(message.content.split(' ')[1])
 
-        if (!amount) return message.channel.send(embed);
-        if(isNaN(amount)) return message.channel.send(embed);
-        if (!amount && !user) return message.channel.send(embed);
+        if (!amount) return message.channel.send({embeds: [embed]}) 
+        if(isNaN(amount)) return message.channel.send({embeds: [embed]}) 
+        if (!amount && !user) return message.channel.send({embeds: [embed]}) 
 
         if (amount < 1 || amount > 99) return message.channel.send(`💡 | Specify a **number** between **1-99** to delete.`)
         
@@ -42,7 +42,7 @@ module.exports.run = (client, message, args) => {
             .setThumbnail('https://cdn.discordapp.com/emojis/860696522659463199.png?v=1')
             .setColor(message.guild.me.displayHexColor)
             .setTimestamp()
-            return client.channels.cache.get(config.DiscordChannels.modLogs).send({ embed: success });
+            return client.channels.cache.get(config.DiscordBot.modLogs).send({ embeds: [success] });
         })
 }
 
