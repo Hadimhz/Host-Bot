@@ -14,6 +14,7 @@ let log = {
 
 let merge = (x, y) => {
     for (const [key, value] of Object.entries(y)) {
+        if(value == null) continue;
         x[key] = value;
     };
     return x;
