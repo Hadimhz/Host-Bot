@@ -3,16 +3,7 @@ const validator = require('validator');
 const config = require('../../../config.json');
 const { panel } = require('../../../index');
 const Discord = require('discord.js');
-
-let getPassword = () => {
-
-    const CAPSNUM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    var password = "";
-    while (password.length < 10) {
-        password += CAPSNUM[Math.floor(Math.random() * CAPSNUM.length)];
-    }
-    return password;
-};
+const { genPassword } = require('./user');
 
 // Questions user needs to answer
 let questions = [
@@ -42,6 +33,7 @@ let questions = [
 ];
 
 module.exports.run = async (client, message, args) => {
+
     // Check to see if they already have an account
     const userData = await UserData.findOne({ userID: message.author.id });
     if (userData) return message.reply({
@@ -104,6 +96,7 @@ module.exports.run = async (client, message, args) => {
             }, 5000);
             return;
         });
+
         // Log the value...
         question.value = awaitMessages.first().content.trim();
 
@@ -128,8 +121,7 @@ module.exports.run = async (client, message, args) => {
                     channel.delete();
                 }, 5000);
                 return;
-            }
-            ;
+            };
         }
 
     }
@@ -137,7 +129,8 @@ module.exports.run = async (client, message, args) => {
     msg.edit({
         content: `<@!${message.member.id}>`,
         embeds: [msg.embeds[0]
-            .setDescription('Attempting to create an account for you...\n\n>>> ' + questions.map(question => `**${question.id}:** ${question.value.toLowerCase()}`).join('\n'))
+            .setDescription('Attempting to create an account for you...\n\n>>> '
+                + questions.map(question => `**${question.id}:** ${question.value.toLowerCase()}`).join('\n'))
             .setFooter('').setTimestamp()]
     });
 
@@ -146,63 +139,62 @@ module.exports.run = async (client, message, args) => {
         "email": questions.find(question => question.id == 'email').value.toLowerCase(),
         "first_name": questions.find(question => question.id == 'username').value,
         "last_name": ".",
-        "password": getPassword(),
+        "password": genPassword(),
         "root_admin": false,
         "language": "en"
     }
 
-    panel.createUser( data.username, data.password, data.email, data.first_name, data.last_name, data.root_admin, data.language )
-    .then(async (user) => {
-        if (user.success) {
+    panel.createUser(data.username, data.password, data.email, data.first_name, data.last_name, data.root_admin, data.language)
+        .then(async (user) => {
 
-            await UserData.create({
-                userID: message.author.id,
-                consoleID: user.data.id,
-                email: user.data.email,
-                username: user.data.username,
-                createdTimestamp: Date.now(),
-                domains: []
-            })
+            if (user.success) {
+                await UserData.create({
+                    userID: message.author.id,
+                    consoleID: user.data.id,
+                    email: user.data.email,
+                    username: user.data.username,
+                    createdTimestamp: Date.now(),
+                    domains: []
+                })
 
-            msg.edit({
-                content: "Hello! You created an new account, Heres the login information",
-                embeds: [new Discord.MessageEmbed()
-                    .setColor("GREEN")
-                    .setDescription("URL: " + config.Pterodactyl.hosturl + " \nUsername: " + data.username + " \nEmail: " + data.email + " \nPassword: " + data.password)
-                    .setFooter("Please note: It is recommended that you change the password")]
-            })
+                msg.edit({
+                    content: "Hello! You created an new account, Heres the login information",
+                    embeds: [new Discord.MessageEmbed()
+                        .setColor("GREEN")
+                        .setDescription("URL: " + config.Pterodactyl.hosturl + "\n" + "Username: " + data.username
+                            + "\n" + "Email: " + data.email + " \nPassword: " + data.password)
+                        .setFooter("Please note: It is recommended that you change the password")]
+                })
 
-            channel.send('**You have 30mins to keep note of this info before the channel is deleted.**')
-            message.guild.members.cache.get(message.author.id).roles.add(config.DiscordRoles.client);
-            setTimeout(function () {
-                channel.delete();
-            }, 1800000);
+                channel.send('**You have 30mins to keep note of this info before the channel is deleted.**')
+                message.guild.members.cache.get(message.author.id).roles.add(config.DiscordRoles.client);
+                setTimeout(function () {
+                    channel.delete();
+                }, 1800000);
 
-        } else {
-            let errEmbed = new Discord.MessageEmbed();
-            if (user.error.length > 1) {
-                errEmbed
-                .setColor("RED")
-                .setTitle("An error has occured:")
-                .setDescription("**ERRORS:**\n\n●" + user.error.map(error => error.detail.replace('\n', ' ')).join('\n●'))
-                .setTimestamp().setFooter('Deleting in 30 seconds...')
             } else {
-                errEmbed
-                .setColor("RED")
-                .setTitle("An error has occured:")
-                .setDescription("**ERROR:**\n\n●" + user.error.detail)
-                .setTimestamp().setFooter('Deleting in 30 seconds...')
-            }
+                let errEmbed = new Discord.MessageEmbed();
+                if (user.error.length > 1) {
+                    errEmbed
+                        .setColor("RED")
+                        .setTitle("An error has occured:")
+                        .setDescription("**ERRORS:**\n\n● " + user.error.map(error => error.detail.replace('\n', ' ')).join('\n● '))
+                        .setTimestamp().setFooter('Deleting in 30 seconds...')
+                } else {
+                    errEmbed
+                        .setColor("RED")
+                        .setTitle("An error has occured:")
+                        .setDescription("**ERROR:**\n\n● " + user.error.detail)
+                        .setTimestamp().setFooter('Deleting in 30 seconds...')
+                }
 
-            msg.edit({
-                content: '\u200b',
-                embeds: [errEmbed]
-            })
-            setTimeout(function () {
-                channel.delete();
-            }, 30000);
-        }
-    })
+                msg.edit({
+                    content: '\u200b',
+                    embeds: [errEmbed]
+                })
+                setTimeout(() => channel.delete(), 30000);
+            }
+        })
 }
 
 module.exports.info = {
