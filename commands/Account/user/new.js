@@ -1,4 +1,4 @@
-const UserData = require('../../../database/schemas/UserData')
+const userdb = require('../../../database/schemas/UserData')
 const validator = require('validator');
 const config = require('../../../config.json');
 const { panel } = require('../../../index');
@@ -35,7 +35,7 @@ let questions = [
 module.exports.run = async (client, message, args) => {
 
     // Check to see if they already have an account
-    const userData = await UserData.findOne({ userID: message.author.id });
+    const userData = await userdb.findOne({ userID: message.author.id });
     if (userData) return message.reply({
         content: "You already have a `panel account` linked to your discord account!"
     })
@@ -148,7 +148,7 @@ module.exports.run = async (client, message, args) => {
         .then(async (user) => {
 
             if (user.success) {
-                await UserData.create({
+                await userdb.create({
                     userID: message.author.id,
                     consoleID: user.data.id,
                     email: user.data.email,
