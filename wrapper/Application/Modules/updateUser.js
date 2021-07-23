@@ -16,14 +16,14 @@ const { toPush } = require('../utils');
 async function createUser(UserID, data) {
     let cred = require('../Application').cred();
     let start = Date.now();
-    let old = await getUser(UserID);
 
     return new Promise(async (resolve, reject) => {
 
-        if (old.errors != null) {
+        let old = await getUser(UserID);
+        if (old.error != null) {
             return resolve({
                 success: false,
-                error: (old.errors.length == 1 ? old.errors[0] : old.errors),
+                error: (old.error.length == 1 ? old.error[0] : old.error),
                 info: {
                     startedAt: start,
                     endedAt: Date.now(),
