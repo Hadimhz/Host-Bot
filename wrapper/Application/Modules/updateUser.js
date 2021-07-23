@@ -3,16 +3,17 @@ let getUser = require('./getUser');
 const { toPush } = require('../utils');
 
 /**
- * @param {Number} UserID User's ID
- * @param {String} Username Users username
- * @param {String} Password Users password
- * @param {String} Email Users email
- * @param {String} FirstName Users first name
- * @param {String} LastName Users last name
- * @param {Boolean} IsAdmin Is the user admin? (true/false)
- * @param {String} Language Language, Normally [en/fr]
+ * @param {Number} userID User's ID
+ * @param {object} data things you want to update
+ * @param {String} data.username Users username
+ * @param {String} data.password Users password
+ * @param {String} data.email Users email
+ * @param {String} data.first_name Users first name
+ * @param {String} data.last_name Users last name
+ * @param {Boolean} data.root_admin Is the user admin? (true/false)
+ * @param {String} data.language Language, Normally [en/fr]
  */
-async function createUser(UserID, Username, Password, Email, FirstName, LastName, IsAdmin, Language) {
+async function createUser(UserID, data) {
     let cred = require('../Application').cred();
     let start = Date.now();
     let old = await getUser(UserID);
@@ -31,13 +32,13 @@ async function createUser(UserID, Username, Password, Email, FirstName, LastName
         };
 
         let input = {
-            'username': Username != null ? Username : old.data.username,
-            'email': Email != null ? Email : old.data.email,
-            'first_name': FirstName != null ? FirstName : old.data.first_name,
-            'last_name': LastName != null ? LastName : old.data.last_name,
-            'password': Password != null ? Password : old.data.password,
-            'root_admin': IsAdmin != null ? IsAdmin : old.data.root_admin,
-            'language': Language != null ? Language : old.data.language,
+            'username': data.username != null ? data.username : old.data.username,
+            'email': data.email != null ? data.email : old.data.email,
+            'first_name': data.first_name != null ? data.first_name : old.data.first_name,
+            'last_name': data.last_name != null ? data.last_name : old.data.last_name,
+            'password': data.password != null ? data.password : old.data.password,
+            'root_admin': data.root_admin != null ? data.root_admin : old.data.root_admin,
+            'language': data.language != null ? data.language : old.data.language,
         };
 
         let res = await fetch(cred.url + "/api/application/users/" + UserID, {
