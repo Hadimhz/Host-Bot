@@ -21,7 +21,7 @@ class transporter {
                 pass: config.email.password
             }
         });
-        this.email = emailData || {};
+        this.email = emailData || { from: config.email.from };
     }
 
     setSender = (sender) => { this.email.from = sender; return this; }
