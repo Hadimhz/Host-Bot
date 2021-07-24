@@ -75,6 +75,7 @@ module.exports.run = async (client, message, args) => {
             question: "You have been sent an email with a code to confirm your identity."
                 + "\n" + "You have 2 minutes to post the code in this channel.",
             filter: (m) => m.author.id === message.author.id,
+            if: () => config.email.enabled,
             afterChecks: [
                 {
                     check: (msg) => msg.trim() == code,
@@ -88,6 +89,8 @@ module.exports.run = async (client, message, args) => {
 
     // prompt the user with the questions.
     let msg = null;
+
+    questions = questions.filter(q => q.if == null || q.if() == true);
 
     for (let question of questions) {
         if (msg == null) {
