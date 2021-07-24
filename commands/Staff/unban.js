@@ -40,5 +40,4 @@ module.exports.run = (client, message, args) => {
 module.exports.info = {
     name: 'unban',
     description: "UNbans a user thats banned from server.",
-    aliases: ['unban'],
 }
