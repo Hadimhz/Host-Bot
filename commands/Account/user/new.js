@@ -4,33 +4,7 @@ const config = require('../../../config.json');
 const { panel } = require('../../../index');
 const Discord = require('discord.js');
 const { genPassword } = require('./user');
-
-// Questions user needs to answer
-let questions = [
-    {
-        id: "username",
-        question: "What should your username be? (**Please dont use spaces or special characters**)", // The questions...
-        filter: (m) => m.author.id === message.author.id, // Filter to use...
-        afterChecks: [{
-            check: (msg) => msg.trim().split(" ").length == 1,
-            errorMessage: "username must not contain any spaces",
-        }],
-        time: 30000, // how much time a user has to answer the question before it times out
-        value: null // The user's response.
-    }, {
-        id: "email",
-        question: "Whats your email? *(must be a valid email)*",
-        filter: (m) => m.author.id === message.author.id,
-        afterChecks: [
-            {
-                check: (msg) => validator.isEmail(msg.toLowerCase().trim()),
-                errorMessage: "the email must be valid.",
-            }
-        ],
-        time: 30000,
-        value: null
-    }
-];
+const transporter = require('../../../utils/transporter');
 
 module.exports.run = async (client, message, args) => {
 
@@ -55,17 +29,64 @@ module.exports.run = async (client, message, args) => {
                 deny: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
             }
         ]
-    }).catch(e => console.error(e));
-
-    // channel.updateOverwrite(message.author, {
-    //     VIEW_CHANNEL: true,
-    //     SEND_MESSAGES: true,
-    //     READ_MESSAGE_HISTORY: true
-    // })
+    }).catch(e => { });
 
     // Tell the user to check the channel.
     message.reply(`Please check <#${channel.id}> to create an account.`);
 
+
+    let code = genPassword(20);
+
+    // Questions user needs to answer
+    let questions = [
+        {
+            id: "username",
+            question: "What should your username be? (**Please dont use spaces or special characters**)", // The questions...
+            filter: (m) => m.author.id === message.author.id, // Filter to use...
+            afterChecks: [{
+                check: (msg) => msg.trim().split(" ").length == 1,
+                errorMessage: "Username must not contain any spaces",
+            }],
+            time: 30000, // how much time a user has to answer the question before it times out
+            value: null // The user's response.
+        }, {
+            id: "email",
+            question: "Whats your email? *(must be a valid email)*",
+            filter: (m) => m.author.id === message.author.id,
+            afterChecks: [
+                {
+                    check: (msg) => validator.isEmail(msg.toLowerCase().trim()),
+                    errorMessage: "The email must be valid.",
+                }
+            ],
+            callback: (value) => {
+                if (config.email.enabled) {
+                    new transporter().setSender(config.email.from)
+                        .setReceiver(value).setSubject("Account verification!")
+                        .setText("Your email address has been used to create an account with " + message.guild.name + "! Your code is: " + code
+                            + "\n\n" + "If that was not you, safely ignore this message. ")
+                        .send().then(x => console.log(x)).catch(e => console.error(e))
+                }
+            },
+            time: 30000,
+            value: null
+        }, {
+            id: "code",
+            question: "You have been sent an email with a code to confirm your identity."
+                + "\n" + "You have 2 minutes to post the code in this channel.",
+            filter: (m) => m.author.id === message.author.id,
+            afterChecks: [
+                {
+                    check: (msg) => msg.trim() == code,
+                    errorMessage: "The code must be the exact one sent to your email.",
+                }
+            ],
+            time: 120000,
+            value: null
+        }
+    ];
+
+    // prompt the user with the questions.
     let msg = null;
 
     for (let question of questions) {
@@ -96,8 +117,10 @@ module.exports.run = async (client, message, args) => {
             }, 5000);
             return;
         });
+        if (!awaitMessages) return;
 
         // Log the value...
+
         question.value = awaitMessages.first().content.trim();
 
         await awaitMessages.first().delete();
@@ -123,6 +146,8 @@ module.exports.run = async (client, message, args) => {
                 return;
             };
         }
+
+        if (question.callback != null) question.callback(question.value);
 
     }
 
