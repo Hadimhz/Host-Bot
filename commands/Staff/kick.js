@@ -42,6 +42,5 @@ module.exports.run = (client, message, args) => {
 module.exports.info = {
     name: 'kick',
     description: "Kick someone from the server.",
-    requiredPermission: 'KICK_MEMBERS,
-    aliases: null,
+    requiredPermission: 'KICK_MEMBERS',
 }
