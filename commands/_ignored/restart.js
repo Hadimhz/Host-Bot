@@ -9,6 +9,6 @@ module.exports.info = {
     name: 'restart',
     description: "",
     requiredPermission: "ADMINISTRATOR",
-    aliases: [''],
+    aliases: [],
     usage: ''
 }
