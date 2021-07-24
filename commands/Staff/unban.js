@@ -47,7 +47,10 @@ module.exports = class Unban extends BaseCommand {
                 }).catch((error) => { message.channel.send(`\`\`\`js\n${error}\`\`\``) })
             }
         })
-
-    }
-
+}
+    
+module.exports.info = {
+    name: 'unban',
+    description: "UNbans a user thats banned from server.",
+    aliases: ['unban'],
 }
