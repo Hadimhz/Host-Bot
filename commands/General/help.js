@@ -5,7 +5,8 @@ module.exports.run = (client, message, args) => {
     let { log: parsed, findCommand } = require(ROOT_PATH + '/utils/commandHandler');
 
     let embed = new MessageEmbed()
-        .setTitle("Help!").setColor("BLUE").setDescription("Commands Help list");
+        .setTitle("Help!").setColor("BLUE").setDescription("Commands Help list")
+        .setFooter(`Requested by ${message.author.tag}`).setTimestamp();
 
     if (args[0] == null) {
         for (const category of parsed.categories.filter(x => x.name != '_ignored')) {
@@ -39,11 +40,6 @@ module.exports.run = (client, message, args) => {
 
     message.channel.send({embeds: [embed]});
 }
-
-
-/**
- * This is completely optional...
- */
 
 module.exports.info = {
     name: 'help',// default = file name (without the extention)

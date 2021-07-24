@@ -6,15 +6,17 @@ module.exports.run = async (client, message, args) => {
         let response = (error || stdout);
         if (!error) {
             if (response.includes("Already up to date.")) {
-                e.edit(`Bot is already up to date`)
+                e.edit(`Bot is already up to date`) 
             } else {
-                e.edit(`Pulled From github\n\n\`\`\`js\n${response}\n\`\`\``)
+                e.edit(`Pulled From github\n\n\`\`\`js\n${response}\n\`\`\`\n\nRunning \`npm i\``)
+                exec(`npm i`, (error, stdout) => {
+                    let response = (error || stdout);
+                    e.edit(`**NPM I Response**\n\n\`\`\`js${response}\`\`\``)
+                })
             }
         }
     })
-
 }
-
 
 /**
  * This is completely optional...
