@@ -1,18 +1,6 @@
-const Discord = require("discord.js");
-const BaseCommand = require("../../BaseClasses/BaseCommand");
-
-module.exports = class Unban extends BaseCommand {
-    constructor() {
-        super({
-            aliases: ["unban"],
-            description: "Unban a Member",
-            name: "unban",
-            permissions: ["KICK_MEMBERS"],
-            usage: "unban <@user>"
-        });
-    }
-
-    async run(client, message, args) {
+const Discord = require('discord.js')
+const config = require("../../config.json")
+module.exports.run = (client, message, args) => {
 
         if(!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send(`🚧 | You do not have enough permissions to use this command.`)
 
@@ -42,7 +30,7 @@ module.exports = class Unban extends BaseCommand {
                 .setThumbnail(`${message.guild.iconURL({ dynamic:true })}`)
                 .setColor(message.guild.me.displayHexColor)
                 .setTimestamp()
-                client.channels.cache.get('866302681512935444').send({embeds: [embed]}) // config.DiscordChannels.modLogs
+                client.channels.cache.get(config.DiscordChannels.modLogs).send({embeds: [embed]})
 
                 }).catch((error) => { message.channel.send(`\`\`\`js\n${error}\`\`\``) })
             }
