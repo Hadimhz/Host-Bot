@@ -3,6 +3,7 @@ const config = require('../../../config.json');
 const { panel } = require('../../../index');
 const Discord = require('discord.js');
 const { genPassword } = require('./user');
+const transporter = require('../../../utils/transporter');
 
 // Questions user needs to answer
 
@@ -16,7 +17,7 @@ module.exports.run = async (client, message, args) => {
     })
 
     const embed = new Discord.MessageEmbed()
-        .setTitle("Password Reset")
+        .setTitle("Password Reset").setColor("BLUE")
         .setDescription("Resetting your password...")
         .setTimestamp()
 
@@ -33,8 +34,23 @@ module.exports.run = async (client, message, args) => {
 
     let res = await panel.updateUser(userData.consoleID, { password });
 
-    if (res.success) embed.setDescription("Your new password is: ||" + password + "||").setColor("BLUE");
-    else embed.setDescription("An error has occured while attempting to change your password.").setColor("DARK_RED");
+    if (res.success) {
+
+        if (config.email.enabled) {
+            embed.setDescription("Success! You're password has been changed and sent to your email.");
+            new transporter().setReceiver(userData.email).setSubject("Password Reset!")
+                .setText("Your password has been reset!"
+                    + "\n" + "new password is: " + password
+                    + "\n\n" + "It is suggested that you change your password.").send();
+
+        } else {
+            embed.setDescription("Your new password is: ||" + password + "||"
+                + "\n\n" + "*It is suggested that you change your password.*");
+        }
+
+        embed.setColor("GREEN");
+
+    } else embed.setDescription("An error has occured while attempting to change your password.").setColor("DARK_RED");
 
     msg.edit({ embeds: [embed] });
 
