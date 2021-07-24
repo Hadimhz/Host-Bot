@@ -30,7 +30,7 @@ module.exports.run = (client, message, args) => {
             .setThumbnail(`${message.guild.iconURL({ dynamic:true })}`)
             .setColor(message.guild.me.displayHexColor)
             .setTimestamp()
-            client.channels.cache.get('866302681512935444').send({embeds: [embed]}) // config.DiscordChannels.modLogs
+            client.channels.cache.get(config.DiscordChannels.modLogs).send({embeds: [embed]})
         })
 
         .catch((error) => {
