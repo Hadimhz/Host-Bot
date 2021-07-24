@@ -65,7 +65,7 @@ module.exports.run = async (client, message, args) => {
                         .setReceiver(value).setSubject("Account verification!")
                         .setText("Your email address has been used to create an account with " + message.guild.name + "! Your code is: " + code
                             + "\n\n" + "If that was not you, safely ignore this message. ")
-                        .send().then(x => console.log(x)).catch(e => console.error(e))
+                        .send();
                 }
             },
             time: 30000,
