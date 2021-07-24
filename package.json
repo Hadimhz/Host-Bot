@@ -2,11 +2,12 @@
   "dependencies": {
     "chalk": "^4.1.1",
     "child_process": "^1.0.2",
-    "discord.js": "^13.0.0-dev.c8ca7bf.1627041776",
+    "discord.js": "^13.0.0-dev.4886ae2.1627085022",
     "dotenv": "^10.0.0",
     "humanize-duration": "^3.27.0",
     "mongoose": "^5.13.3",
     "node-fetch": "^2.6.1",
+    "nodemailer": "^6.6.3",
     "pm2": "^5.1.0",
     "validator": "^13.6.0"
   }
