@@ -8,7 +8,7 @@ module.exports.run = (client, message, args) => {
         let member = message.mentions.members.first()
 
         if(!user) return message.channel.send(`🚧 | You didnt mention anyone.`)
-        if(member === message.member) return message.channel.send('🚧 | You cant kick yourself.')
+        if(member === message.member) return message.channel.send('🚧 | You cant ban yourself.')
 
         let HighRole = message.member.roles.highest.position;
         let getHighRole = member.roles.highest.position;
