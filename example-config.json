@@ -60,6 +60,7 @@
   },
   "email": {
     "enabled": false,
+    "verbose": true,
     "host": "SMTP url",
     "port": "587",
     "user": "SMTP Username",
