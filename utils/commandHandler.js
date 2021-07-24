@@ -89,7 +89,7 @@ let findCommand = (list, commandsList, message) => {
 
         if (message != null) {
             if (temp != null && temp.requiredPermission != null && !message.member.permissions.has(temp.requiredPermission)) { // Permission check
-                message.channel.send({ content: config.missing_permission.replace("{PERMISSION}", temp.requiredPermission) }); // Missing permission message
+                message.channel.send({ content: config.discord.bot.missing_permission.replace("{PERMISSION}", temp.requiredPermission) }); // Missing permission message
                 return;
             };
         };

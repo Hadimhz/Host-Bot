@@ -1,28 +1,21 @@
 {
-  "missing_permission": "You require the `{PERMISSION}` permission to use this command.",
-  "Port": 1144,
-  "APIPort": 1145,
   "externalPassword": "This should be the same password as the one thats in the daemon config.json (This is how they talk together)",
-
   "mongoPath": "The mongodb server connection url",
-
   "pterodactyl": {
     "hosturl": "Your pterodactyl panel. dont forget the https",
     "apikey": "your admin api key",
     "apikeyclient": "your client api key"
   },
-
   "discord": {
-
     "guild": "Main Guild ID",
     "bot": {
       "prefix": "Bots Prefix",
+      "missing_permission": "You require the `{PERMISSION}` permission to use this command.",
       "clientID": "Bot client ID",
       "clientSecret": "Bot client secret",
       "callbackURL": "callback url after logging into the site. should end with /api/callback",
       "ownerID": "Owner ID (For owner only commands)"
     },
-
     "channels": {
       "ticketVC": "Vc Channel ID Lists the number of tickets",
       "botsVC": "Vc or channel ID Shows how many bots are in the server",
@@ -40,7 +33,6 @@
       "invitechannel": "Invite logs channel ID",
       "inviterewmsg": "Invite reward message channel ID"
     },
-
     "categories": {
       "tickets": [
         "The category ID tickets will be made",
@@ -49,7 +41,6 @@
       ],
       "accountCreation": "The category ID in which the channels to create user accounts will be made"
     },
-
     "roles": {
       "member": "Member role ID",
       "client": "Client role ID",
@@ -67,19 +58,21 @@
       }
     }
   },
-
-  "Email": {
-    "Host": "SMTP url",
-    "Port": "587",
-    "User": "SMTP Username",
-    "Password": "SMTP password",
-    "From": "Email sent from"
+  "email": {
+    "host": "SMTP url",
+    "port": "587",
+    "user": "SMTP Username",
+    "password": "SMTP password",
+    "from": "Email sent from"
   },
-  
-  "SSH": {
-    "Host": "Reverse proxy IP",
-    "User": "root",
-    "Password": "Reverse proxy root password",
-    "Port": 22
+  "ssh": {
+    "host": "Reverse proxy IP",
+    "user": "root",
+    "password": "Reverse proxy root password",
+    "port": 22
+  },
+  "ports": {
+    "webPort": 1144,
+    "APIPort": 1145
   }
 }
