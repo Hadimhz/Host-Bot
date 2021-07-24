@@ -59,6 +59,7 @@
     }
   },
   "email": {
+    "enabled": false,
     "host": "SMTP url",
     "port": "587",
     "user": "SMTP Username",
