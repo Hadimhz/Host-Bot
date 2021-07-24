@@ -2,8 +2,6 @@ const Discord = require('discord.js')
 const config = require("../../config.json")
 module.exports.run = (client, message, args) => {
 
-        if(!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send(`🚧 | You do not have enough permissions to use this command.`)
-
         if(!args[0]) return message.channel.send(`🚧 | Specify **ID** of the **user** you want to **unban**.`)
 
         if(message.mentions.users.first()) return message.channel.send(`🚧 | Use ID's to unban people.`)
@@ -39,5 +37,6 @@ module.exports.run = (client, message, args) => {
     
 module.exports.info = {
     name: 'unban',
-    description: "UNbans a user thats banned from server.",
+    description: "Unbans a user thats banned from server.",
+    requiredPermission: "BAN_MEMBERS"
 }
