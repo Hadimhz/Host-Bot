@@ -1,18 +1,6 @@
-const Discord = require("discord.js");
-const BaseCommand = require("../../BaseClasses/BaseCommand");
-
-module.exports = class Ban extends BaseCommand {
-    constructor() {
-        super({
-            aliases: ["ban"],
-            description: "ban a Member",
-            name: "ban",
-            permissions: ["KICK_MEMBERS"],
-            usage: "ban <@user>"
-        });
-    }
-
-    async run(client, message, args) {
+const Discord = require('discord.js')
+const config = require("../../config.json")
+module.exports.run = (client, message, args) => {
 
         if(!message.member.permissions.has('BAN_MEMBERS')) return message.channel.send(`🚧 | You do not have enough permissions to use this command.`)
 
@@ -49,6 +37,9 @@ module.exports = class Ban extends BaseCommand {
             message.channel.send(`\`\`\`js\n${error}\`\`\``)
           })
 
-    }
+   }
 
+module.exports.info = {
+    name: 'Ban',
+    description: "Bans a member.",
 }
