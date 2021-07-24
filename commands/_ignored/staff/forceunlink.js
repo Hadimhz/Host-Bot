@@ -9,10 +9,11 @@ module.exports.run = async (client, message, args) => {
             message.guild.members.fetch()
         }, 5000)
         const person = message.mentions.users.first() || await message.guild.members.cache.get(args[0]);
+        if(!person) return e.edit('User doesn\'t exist ')
         const userData = await userdb.findOneAndDelete({
             userID: person.id
         });
-        if(!userData) return message.channel.send(person + ' Doesn\'t have a account or Isn\'t linked')
+        if(!userData) return e.edit('<@' + person + '> Doesn\'t have a account or Isn\'t linked')
         const embed = new MessageEmbed()
         .setTitle(`${person.username || person.user.username}'s Old Data`)
         .setDescription('```js\n' + userData + '```')
