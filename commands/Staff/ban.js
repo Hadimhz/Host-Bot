@@ -42,4 +42,5 @@ module.exports.run = (client, message, args) => {
 module.exports.info = {
     name: 'Ban',
     description: "Bans a member.",
+    requiredPermission: "BAN_MEMBERS"
 }
