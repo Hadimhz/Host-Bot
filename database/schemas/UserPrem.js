@@ -9,7 +9,6 @@ const UserPremSchema = new mongoose.Schema({
     // User's discord ID
     userID: reqString,
 
-
     // The amount of servers the user can make
     amount: reqString,
 
