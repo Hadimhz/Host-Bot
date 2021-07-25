@@ -19,8 +19,8 @@ module.exports.run = async (client, message, args) => {
     const pp = await userprem.findOne({
         consoleID: userData.consoleID
     });
-    if (!pp) return message.reply(`You have No premium servers, You can buy them for ${config.premiumprice} by donating to ${config.donationlink}`)
-    if (pp.amount === '0') return message.reply(`You have No premium servers, You can buy them for ${config.premiumprice} by donating to ${config.donationlink}`)
+    if (!pp) return message.reply(`You have No premium servers, You can buy them for ${config.premiumprice}$ by donating to ${config.donationlink}`)
+    if (pp.amount === '0') return message.reply(`You have No premium servers, You can buy them for ${config.premiumprice}$ by donating to ${config.donationlink}`)
     const embed = new MessageEmbed()
         .setTitle('Premium Servers For ' + `${person.tag || person.user.tag}`)
         .setDescription(`${pp.used} out of ${pp.amount} Servers used`)
