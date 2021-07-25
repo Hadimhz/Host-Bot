@@ -5,6 +5,7 @@ const { panel } = require('../../../index');
 const Discord = require('discord.js');
 const { genPassword } = require('./user');
 const transporter = require('../../../utils/transporter');
+const userprem = require('../../../database/schemas/UserPrem')
 
 module.exports.run = async (client, message, args) => {
 
@@ -184,7 +185,11 @@ module.exports.run = async (client, message, args) => {
                     createdTimestamp: Date.now(),
                     domains: []
                 })
-
+                await userprem.create({
+                    consoleID: user.data.id,
+                    amount: 0,
+                    used: 0
+                    })
                 msg.edit({
                     content: "Hello! You created an new account, Heres the login information",
                     embeds: [new Discord.MessageEmbed()
