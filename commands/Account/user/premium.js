@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
         consoleID: userData.consoleID
     });
     if (!pp) return message.reply('You have No premium servers, You can buy them for <price here> by donating to <linkhere>')
-    if (pp.amount === 0) return message.reply('You have No premium servers, You can buy them for <price here> by donating to <linkhere>')
+    if (pp.amount === '0') return message.reply('You have No premium servers, You can buy them for <price here> by donating to <linkhere>')
     const embed = new MessageEmbed()
         .setTitle('Premium Servers For ' + `${person.username || person.user.username}`)
         .setDescription(`${pp.used} out of ${pp.amount} Servers used`)
