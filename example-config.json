@@ -1,6 +1,8 @@
 {
   "externalPassword": "This should be the same password as the one thats in the daemon config.json (This is how they talk together)",
   "mongoPath": "The mongodb server connection url",
+  "premiumprice": "The price for getting premium servers",
+  "donationlink": "The link to buy premium servers",
   "pterodactyl": {
     "hosturl": "Your pterodactyl panel. dont forget the https",
     "apikey": "your admin api key",
