@@ -14,7 +14,7 @@ const config = require("./config.json"); // Edit example-config.json
 require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
-
+global.messageSnipes = new Discord.Collection();
 panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
 const client = new Discord.Client({

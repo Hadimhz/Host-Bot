@@ -47,6 +47,7 @@
       "bot": "Bot role ID",
       "staff": "Staff role ID (Used for staff commands)",
       "mute": "Muted role ID",
+      "botdev": "",
       "invites": {
         "5": "5+ invites role ID",
         "10": "10+ invites role ID",
