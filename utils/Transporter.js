@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const config = require('../config.json');
 const chalk = require('chalk');
 
-class transporter {
+class Transporter {
 
     /**
      * @param {object} emailData 
@@ -46,4 +46,4 @@ class transporter {
     };
 }
 
-module.exports = transporter;
+module.exports = Transporter;

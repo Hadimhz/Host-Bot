@@ -4,7 +4,7 @@ const config = require('../../../config.json');
 const { panel } = require('../../../index');
 const Discord = require('discord.js');
 const { genPassword } = require('./user');
-const transporter = require('../../../utils/transporter');
+const Transporter = require('../../../utils/Transporter');
 
 module.exports.run = async (client, message, args) => {
 
@@ -60,7 +60,7 @@ module.exports.run = async (client, message, args) => {
                 }
             ],
             callback: (value) => {
-                new transporter().setSender(config.email.from)
+                new Transporter().setSender(config.email.from)
                     .setReceiver(value).setSubject("Identity Verification!")
                     .setText("Someone has attempted to link their discord account to your " + message.guild.name + " panel account! Your code is: " + code
                         + "\n\n" + "If that was not you, safely ignore this message. ")
