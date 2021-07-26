@@ -3,7 +3,7 @@ const config = require('../../../config.json');
 const { panel } = require('../../../index');
 const Discord = require('discord.js');
 const { genPassword } = require('./user');
-const transporter = require('../../../utils/transporter');
+const Transporter = require('../../../utils/Transporter');
 
 // Questions user needs to answer
 
@@ -38,7 +38,7 @@ module.exports.run = async (client, message, args) => {
 
         if (config.email.enabled) {
             embed.setDescription("Success! You're password has been changed and sent to your email.");
-            new transporter().setReceiver(userData.email).setSubject("Password Reset!")
+            new Transporter().setReceiver(userData.email).setSubject("Password Reset!")
                 .setText("Your password has been reset!"
                     + "\n" + "new password is: " + password
                     + "\n\n" + "It is suggested that you change your password.").send();
