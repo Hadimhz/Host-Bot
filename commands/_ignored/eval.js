@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
 }}
 
 module.exports.info = {
-    name: "test",
+    name: "eval",
     description: "eval code.",
     requiredPermission: "ADMINISTRATOR",
 
