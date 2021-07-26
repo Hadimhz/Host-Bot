@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
         consoleID: userData.consoleID //The users Console ID instead of saving it to a User's ID
     });
     if (message.author.id === person.id && !pp) return message.reply(`You have No premium servers, You can buy them for ${config.premiumprice}$ by donating to ${config.donationlink}`)
-    if (message.author.id === person.id && pp.amount === '0') return message.reply(`You have No premium servers, You can buy them for $${config.premiumprice} by donating to ${config.donationlink}`)
+    if (message.author.id === person.id && pp.amount === '0' && pp.used === '0') return message.reply(`You have No premium servers, You can buy them for $${config.premiumprice} by donating to ${config.donationlink}`)
     const embed = new MessageEmbed()
         .setTitle('Premium Servers For ' + `${person.tag || person.user.tag}`)
         .setDescription(`${pp.used} out of ${pp.amount} Servers used`)
