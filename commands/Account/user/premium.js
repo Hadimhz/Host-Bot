@@ -17,10 +17,10 @@ module.exports.run = async (client, message, args) => {
     if (!userData) return message.channel.send('The User you mentioned doesn\'t have a account or isn\'t linked.')
     // This is where you get the amount of servers the user has and has used
     const pp = await userprem.findOne({
-        consoleID: userData.consoleID
+        consoleID: userData.consoleID //The users Console ID instead of saving it to a User's ID
     });
-    if (!pp) return message.reply(`You have No premium servers, You can buy them for ${config.premiumprice}$ by donating to ${config.donationlink}`)
-    if (pp.amount === '0') return message.reply(`You have No premium servers, You can buy them for $${config.premiumprice} by donating to ${config.donationlink}`)
+    if (message.author.id === person.id && !pp) return message.reply(`You have No premium servers, You can buy them for ${config.premiumprice}$ by donating to ${config.donationlink}`)
+    if (message.author.id === person.id && pp.amount === '0') return message.reply(`You have No premium servers, You can buy them for $${config.premiumprice} by donating to ${config.donationlink}`)
     const embed = new MessageEmbed()
         .setTitle('Premium Servers For ' + `${person.tag || person.user.tag}`)
         .setDescription(`${pp.used} out of ${pp.amount} Servers used`)
