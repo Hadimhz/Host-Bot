@@ -182,8 +182,7 @@ module.exports.run = async (client, message, args) => {
                     consoleID: user.data.id,
                     email: user.data.email,
                     username: user.data.username,
-                    createdTimestamp: Date.now(),
-                    domains: []
+                    createdTimestamp: Date.now()
                 })
                 await userprem.create({
                     consoleID: user.data.id,

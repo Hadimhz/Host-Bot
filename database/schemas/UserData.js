@@ -23,13 +23,6 @@ const UserDataSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.Date,
         required: true
     },
-
-    // Domains the user has proxied
-    domains: {
-        type: mongoose.SchemaTypes.Array,
-        required: true,
-        default: []
-    }
 })
 
 module.exports = mongoose.model('UserData', UserDataSchema);
