@@ -5,3 +5,4 @@ config.json
 .env
 log.json
 test.js
+.idea
