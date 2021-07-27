@@ -8,5 +8,8 @@
     "pm2": "^5.1.0",
     "validator": "^13.6.0",
     "node-fetch": "^2.6.1"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
