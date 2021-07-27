@@ -14,6 +14,10 @@ const config = require("./config.json"); // Edit example-config.json
 require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
+const cache = require('./utils/Cache');
+const fetchBotNodes = require('./utils/fetchBotNodes')
+const fetchGamingNodes = require('./utils/fetchBotNodes')
+const fetchStorageNodes = require('./utils/fetchBotNodes')
 global.messageSnipes = new Discord.Collection();
 panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
@@ -28,9 +32,20 @@ const client = new Discord.Client({
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
 
+const updateCache = async () => {
+    let botNodeIds = await fetchBotNodes();
+    let gamingNodeIds = await fetchGamingNodes();
+    let storageNodeIds = await fetchStorageNodes();
+
+    cache.set('botNodeIds', botNodeIds)
+    cache.set('gamingNodeIds', gamingNodeIds)
+    cache.set('storageNodeIds', storageNodeIds)
+}
+
 exports.client = client;
 global.ROOT_PATH = __dirname;
 exports.panel = panel;
+exports.updateCache = updateCache;
 
 // Event Handler
 let events = fs.readdirSync(ROOT_PATH + '/events').filter(x => x.endsWith(".js"));
