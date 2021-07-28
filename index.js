@@ -18,7 +18,8 @@ const cache = require('./utils/Cache');
 const fetchBotNodes = require('./utils/fetchBotNodes')
 const fetchGamingNodes = require('./utils/fetchBotNodes')
 const fetchStorageNodes = require('./utils/fetchBotNodes')
-global.panel = panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
+panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
+global.panel = panel;
 global.messageSnipes = new Discord.Collection();
 
 const client = new Discord.Client({
