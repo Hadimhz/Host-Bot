@@ -14,7 +14,7 @@ const config = require("./config.json"); // Edit example-config.json
 require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
-const cache = use('./utils/Cache');
+const cache = require('./utils/Cache');
 const fetchBotNodes = require('./utils/fetchBotNodes')
 const fetchGamingNodes = require('./utils/fetchBotNodes')
 const fetchStorageNodes = require('./utils/fetchBotNodes')
