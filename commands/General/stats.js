@@ -32,5 +32,11 @@ module.exports.run = (client, message, args) => {
     .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
     .setTimestamp()
     .setColor('#36393F');
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
 };
+module.exports.info = {
+    name: 'stats',
+    description: "A stats command that shows detailed information about the bot",
+    requiredPermission: null,
+    aliases: ['statistics'],
+}
