@@ -19,8 +19,8 @@ const fetchBotNodes = require('./utils/fetchBotNodes')
 const fetchGamingNodes = require('./utils/fetchBotNodes')
 const fetchStorageNodes = require('./utils/fetchBotNodes')
 panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
-global.panel = panel;
 global.messageSnipes = new Discord.Collection();
+global.panel = panel;
 
 const client = new Discord.Client({
     //I've removed any intents that seemd useless, Add them as you need
