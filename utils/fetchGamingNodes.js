@@ -1,4 +1,3 @@
-const { panel } = require('../index');
 
 const fetchGamingNodes = async () => {
     let toReturn = [];

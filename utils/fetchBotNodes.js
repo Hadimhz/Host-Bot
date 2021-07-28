@@ -1,4 +1,3 @@
-const { panel } = require('../index');
 
 const fetchBotNodes = async () => {
     let toReturn = [];

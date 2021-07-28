@@ -18,8 +18,8 @@ const cache = require('./utils/Cache');
 const fetchBotNodes = require('./utils/fetchBotNodes')
 const fetchGamingNodes = require('./utils/fetchBotNodes')
 const fetchStorageNodes = require('./utils/fetchBotNodes')
+global.panel = panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 global.messageSnipes = new Discord.Collection();
-panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
 const client = new Discord.Client({
     //I've removed any intents that seemd useless, Add them as you need
@@ -31,7 +31,6 @@ const client = new Discord.Client({
     },
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
-
 const updateCache = async () => {
     let botNodeIds = await fetchBotNodes();
     let gamingNodeIds = await fetchGamingNodes();
