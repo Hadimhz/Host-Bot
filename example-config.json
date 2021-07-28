@@ -35,7 +35,8 @@
       "invitechannel": "Invite logs channel ID",
       "inviterewmsg": "Invite reward message channel ID"
     },
-    "categories": {
+    "tickets": {
+      "enabled": true,
       "other": "Category for other support",
       "report": "Category for reporting Bugs or users",
       "serverissues": "Category for Issues with the users server",
