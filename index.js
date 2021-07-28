@@ -15,12 +15,9 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
 const cache = require('./utils/Cache');
-const fetchBotNodes = require('./utils/fetchBotNodes')
-const fetchGamingNodes = require('./utils/fetchBotNodes')
-const fetchStorageNodes = require('./utils/fetchBotNodes')
-panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 global.messageSnipes = new Discord.Collection();
-global.panel = panel;
+
+panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
 const client = new Discord.Client({
     //I've removed any intents that seemd useless, Add them as you need
@@ -32,19 +29,21 @@ const client = new Discord.Client({
     },
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
+
+exports.client = client;
+global.ROOT_PATH = __dirname;
+exports.panel = panel;
+
+const { fetchBotNodes, fetchGamingNodes, fetchStorageNodes } = require('./utils/fetchNodes')
 const updateCache = async () => {
     let botNodeIds = await fetchBotNodes();
     let gamingNodeIds = await fetchGamingNodes();
     let storageNodeIds = await fetchStorageNodes();
 
-    cache.set('botNodeIds', botNodeIds)
-    cache.set('gamingNodeIds', gamingNodeIds)
-    cache.set('storageNodeIds', storageNodeIds)
-}
-
-exports.client = client;
-global.ROOT_PATH = __dirname;
-exports.panel = panel;
+    cache.set('botNodeIds', botNodeIds);
+    cache.set('gamingNodeIds', gamingNodeIds);
+    cache.set('storageNodeIds', storageNodeIds);
+};
 exports.updateCache = updateCache;
 
 // Event Handler
