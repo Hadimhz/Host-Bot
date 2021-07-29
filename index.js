@@ -35,20 +35,20 @@ global.ROOT_PATH = __dirname;
 exports.panel = panel;
 
 const { fetchBotNodes, fetchGamingNodes, fetchStorageNodes } = require('./utils/fetchNodes')
-const updateCache = async () => {   
-    var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes();
 
+const updateCache = async () => {
+    var today = new Date();
     let botNodeIds = await fetchBotNodes();
     let gamingNodeIds = await fetchGamingNodes();
     let storageNodeIds = await fetchStorageNodes();
 
-    await cache.set('botNodeIds', botNodeIds);
-    await cache.set('gamingNodeIds', gamingNodeIds);
-    await cache.set('storageNodeIds', storageNodeIds);
+    cache.set('botNodeIds', botNodeIds);
+    cache.set('gamingNodeIds', gamingNodeIds);
+    cache.set('storageNodeIds', storageNodeIds);
 
-    console.log(chalk.bgGreen("[CACHE]"), "Updated Cache! Time: " + time)
+    console.log(chalk.bgGreen("[CACHE]"), "Updated Cache! Time: " + today.getHours() + ":" + today.getMinutes())
 };
+
 exports.updateCache = updateCache;
 
 // Event Handler
