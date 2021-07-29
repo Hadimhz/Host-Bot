@@ -1,46 +1,28 @@
 const { panel } = require('../index.js');
 
-const fetchBotNodes = async () => {
-        
-    let allNodes = await panel.fetchNodes()
-    let toReturn = [];
+const fetchNodes = async () => await panel.fetchNodes();
 
-    let botNodes = allNodes.data.filter(x => x.description?.toLowerCase()?.includes('bots'));
+const fetchBotNodes = (allNodes) => allNodes.data.filter(x => x.description?.toLowerCase()?.includes('bots')).map(node => node.id);
 
-    botNodes.forEach(n => toReturn.push(n.id))
 
-    return toReturn;
+const fetchGamingNodes = (allNodes) => allNodes.data.filter(x => x.description?.toLowerCase()?.includes('gaming')).map(node => node.id);
 
-}
 
-const fetchGamingNodes = async () => {
-        
-    let allNodes = await panel.fetchNodes()
-    let toReturn = [];
+const fetchStorageNodes = (allNodes) => allNodes.data.filter(x => x.description?.toLowerCase()?.includes('storage')).map(node => node.id);
 
-    let gamingNodes = allNodes.data.filter(x => x.description?.toLowerCase()?.includes('bots'));
 
-    gamingNodes.forEach(n => toReturn.push(n.id))
 
-    return toReturn;
+const parse = (nodes) => ({
+    botNodes: fetchBotNodes(nodes),
+    gamingNodes: fetchGamingNodes(nodes),
+    storageNodes: fetchStorageNodes(nodes)
+});
 
-}
-
-const fetchStorageNodes = async () => {
-        
-    let allNodes = await panel.fetchNodes()
-    let toReturn = [];
-
-    let storageNodes = allNodes.data.filter(x => x.description?.toLowerCase()?.includes('bots'));
-
-    storageNodes.forEach(n => toReturn.push(n.id))
-
-    return toReturn;
-
-}
 
 module.exports = {
+    fetchNodes,
     fetchBotNodes,
     fetchGamingNodes,
-    fetchStorageNodes
+    fetchStorageNodes,
+    parse
 }

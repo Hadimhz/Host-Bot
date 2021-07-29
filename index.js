@@ -34,19 +34,17 @@ exports.client = client;
 global.ROOT_PATH = __dirname;
 exports.panel = panel;
 
-const { fetchBotNodes, fetchGamingNodes, fetchStorageNodes } = require('./utils/fetchNodes')
+const { parse, fetchNodes } = require('./utils/fetchNodes')
 
 const updateCache = async () => {
     var today = new Date();
-    let botNodeIds = await fetchBotNodes();
-    let gamingNodeIds = await fetchGamingNodes();
-    let storageNodeIds = await fetchStorageNodes();
+    const { botNodes, gamingNodes, storageNodes } = parse(await fetchNodes());
 
-    cache.set('botNodeIds', botNodeIds);
-    cache.set('gamingNodeIds', gamingNodeIds);
-    cache.set('storageNodeIds', storageNodeIds);
+    cache.set('botNodeIds', botNodes);
+    cache.set('gamingNodeIds', gamingNodes);
+    cache.set('storageNodeIds', storageNodes);
 
-    console.log(chalk.bgGreen("[CACHE]"), "Updated Cache! Time: " + today.getHours() + ":" + today.getMinutes())
+    console.log(chalk.green("[CACHE]"), "Updated Cache! Time: " + today.getHours() + ":" + today.getMinutes())
 };
 
 exports.updateCache = updateCache;
