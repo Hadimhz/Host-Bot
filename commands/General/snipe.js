@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if (args[0] != null) {
 
         if (args[0].toLowerCase() == 'dump' && message.member.roles.cache.get(config.discord.roles.botdev) != null) {
-            let file = new Discord.MessageAttachment(Buffer.from(JSON.stringify(Array.from(messageSnipes)), "utf8"), "Snipes-Dump.json");
+            let file = new Discord.MessageAttachment(Buffer.from(JSON.stringify(Array.from(client.messageSnipes)), "utf8"), "Snipes-Dump.json");
             message.author.send(file);
             message.channel.send('Check your dms.');
             return;
@@ -45,13 +45,13 @@ module.exports.run = async (client, message, args) => {
             let file;
 
             if (target != '*') {
-                file = new Discord.MessageAttachment(Buffer.from(JSON.stringify(messageSnipes.get(message.channel.id).filter(x => x.member == target)), "utf8"), "Snipe-Logs.json");
-                messageSnipes.set(message.channel.id, messageSnipes.get(message.channel.id).filter(x => x.member != target));
+                file = new Discord.MessageAttachment(Buffer.from(JSON.stringify(client.messageSnipes.get(message.channel.id).filter(x => x.member == target)), "utf8"), "Snipe-Logs.json");
+                client.messageSnipes.set(message.channel.id, client.messageSnipes.get(message.channel.id).filter(x => x.member != target));
             }
             else if (message.member.roles.cache.get(config.discord.roles.botdev) != null && message.member.roles.cache.get(config.discord.roles.botdev) != null) {
-                file = new Discord.MessageAttachment(Buffer.from(JSON.stringify(Array.from(messageSnipes)), "utf8"), "Snipe-Logs.json");
+                file = new Discord.MessageAttachment(Buffer.from(JSON.stringify(Array.from(client.messageSnipes)), "utf8"), "Snipe-Logs.json");
 
-                messageSnipes.clear();
+                client.messageSnipes.clear();
             } else {
                 message.channel.send("You don't have permission to do this.");
                 return;
@@ -65,7 +65,7 @@ module.exports.run = async (client, message, args) => {
 
     let embed3 = new MessageEmbed().setDescription(`Theres nothing to snipe`)
 
-    let snipe = messageSnipes.get(message.channel.id)
+    let snipe = client.messageSnipes.get(message.channel.id)
 
     if (snipe == null) return message.channel.send({embeds: [embed3]})
 

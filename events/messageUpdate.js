@@ -10,8 +10,8 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
         action: "edit"
     };
 
-    if (messageSnipes.get(oldMessage.channel.id) == null) messageSnipes.set(oldMessage.channel.id, [data])
-    else messageSnipes.set(oldMessage.channel.id, [...messageSnipes.get(oldMessage.channel.id), data]);
+    if (client.messageSnipes.get(oldMessage.channel.id) == null) client.messageSnipes.set(oldMessage.channel.id, [data])
+    else client.messageSnipes.set(oldMessage.channel.id, [...client.messageSnipes.get(oldMessage.channel.id), data]);
 
-    messageSnipes.set(oldMessage.channel.id, messageSnipes.get(oldMessage.channel.id).filter(x => (Date.now() - x.timestamp) < 300000 && x != null));
+    client.messageSnipes.set(oldMessage.channel.id, client.messageSnipes.get(oldMessage.channel.id).filter(x => (Date.now() - x.timestamp) < 300000 && x != null));
 })
