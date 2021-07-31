@@ -8,8 +8,8 @@ module.exports.run = async (client, message, args) => {
         embeds: [
             new MessageEmbed()
                 .setTitle(`DanBot Hosting Bot Uptime`)
-                .setColor("#6f89d9").addField("Uptime:", humanizeDuration(client.uptime, { round: true }))
-                .addField("Memory usage:", Math.trunc((process.memoryUsage().heapUsed) / 1024 / 1000) + "mb", true)
+                .setColor("#6f89d9").addField("> 🤖 Uptime:", humanizeDuration(client.uptime, { round: true }))
+                .addField("> ⌛ Memory usage:", Math.trunc((process.memoryUsage().heapUsed) / 1024 / 1000) + "mb", true)
                 .setFooter(`Requested by ${message.author.tag}`).setTimestamp()
         ]
     });
