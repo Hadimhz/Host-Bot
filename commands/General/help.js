@@ -5,7 +5,7 @@ module.exports.run = (client, message, args) => {
     let { log: parsed, findCommand } = require(ROOT_PATH + '/utils/commandHandler');
 
     let embed = new MessageEmbed()
-        .setTitle("Help!").setColor("BLUE").setDescription("Commands Help list")
+        .setTitle("Commands Help!").setColor("#36393F").setDescription("Here is a list of commands that you can use! Use DBH!help <name> to get help with a specific command!")
         .setFooter(`Requested by ${message.author.tag}`).setTimestamp();
 
     if (args[0] == null) {
