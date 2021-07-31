@@ -5,6 +5,7 @@
     "discord.js": "^13.0.0-dev.30a58dc.1627430624",
     "dotenv": "^10.0.0",
     "humanize-duration": "^3.27.0",
+    "jsdom": "^16.6.0",
     "mongoose": "^5.13.3",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.6.3",
