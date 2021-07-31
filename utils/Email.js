@@ -1,63 +1,59 @@
 const { JSDOM } = require("jsdom");
 const fs = require('fs');
+const marked = require('marked');
 
 class Email {
 
     #send = fs.readFileSync(global.ROOT_PATH + "/utils/libs/emailTemplate.html", "utf8")
-    #document = new JSDOM(this.#send);
-    constructor() {
+    #DOM = new JSDOM(this.#send);
+    #document = this.#DOM.window.document;
 
-    }
+    constructor() { }
 
-    setTitle(string = "", ref) {
-        let element = this.#document.window.document.getElementById("title");
+    setTitle(string = "") {
+        let element = this.#document.getElementById("title");
 
-        element.textContent = string;
-        if (ref) element.setAttribute("href", ref)
+        element.innerHTML = marked(string);
         return this;
     }
 
-    setSignature(string, ref) {
-        let element = this.#document.window.document.getElementById("signature");
+    setSignature(string = "") {
+        let element = this.#document.getElementById("signature");
 
-        element.textContent = string;
-        if (ref) element.setAttribute("href", ref)
+        element.innerHTML = marked(string);
         return this;
     }
 
-    setSubText(string) {
-        let element = this.#document.window.document.getElementById("subText");
+    setSubText(string = "") {
+        let element = this.#document.getElementById("subText");
 
-        element.textContent = string;
+        element.innerHTML = marked(string);
         return this;
     }
 
+    setHeader(string = "") {
+        let element = this.#document.getElementById("header");
 
-    setHeader(string, ref) {
-        let element = this.#document.window.document.getElementById("header");
-
-        element.textContent = string;
-        if (ref) element.setAttribute("href", ref)
+        element.innerHTML = marked(string);
         return this;
     }
 
-    setMessage(string) {
-        let element = this.#document.window.document.getElementById("message");
+    setMessage(string = "") {
+        let element = this.#document.getElementById("message");
 
-        element.textContent = string;
+        element.innerHTML = marked(string);
         return this;
     }
 
-    setFooter(string, ref) {
-        let element = this.#document.window.document.getElementById("footer");
+    setFooter(string = "") {
+        let element = this.#document.getElementById("footer");
 
-        element.textContent = string;
-        if (ref) element.setAttribute("href", ref)
+        element.innerHTML = marked(string);
         return this;
     }
 
     get() {
-        return this.#document
+        return this.#DOM
     }
 
 }
