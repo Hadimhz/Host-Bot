@@ -188,7 +188,7 @@ module.exports.run = async (client, message, args) => {
                     consoleID: user.data.id,
                     amount: 0,
                     used: 0
-                    })
+                })
                 msg.edit({
                     content: "Hello! You created an new account, Heres the login information",
                     embeds: [new Discord.MessageEmbed()
