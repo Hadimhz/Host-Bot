@@ -171,7 +171,7 @@ let loadCommands = (rootPath) => {
                 };
 
                 if (parent == null) {
-                    let DupeCheck = checkForDuplicate(_command, (toReturn.commandsCol.array() || []), true); // Checking for in this directory;
+                    let DupeCheck = checkForDuplicate(_command, ([...toReturn.commandsCol.values()] || []), true); // Checking for in this directory;
                     if (DupeCheck.status == true) {
                         _command.errors.push({
                             path: _command.path + '/' + _command.file,
