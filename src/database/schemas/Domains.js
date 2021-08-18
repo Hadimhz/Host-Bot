@@ -8,7 +8,6 @@ const DomainsSchema = new mongoose.Schema({
         required: true
     },
 
-
     // Domain
     domain: {
         type: mongoose.SchemaTypes.String,

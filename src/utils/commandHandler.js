@@ -88,8 +88,13 @@ let findCommand = (list, commandsList, message) => {
         else if (cmd != null && cmd.subCommands != null) temp = cmd.subCommands.find(x => x.name == command || x.aliases.includes(command));
 
         if (message != null) {
+            if (temp != null && temp.requiredRole != null && !message.member.roles.cache.find(r => r.id === temp.requiredRole)) { // role check
+                let rname = message.guild.roles.cache.find(r => r.id === temp.requiredRole)
+                message.channel.send({ content: config.discord.bot.missing_role.replace("{ROLE}", rname.name) }); // Missing role message
+                return;
+            };
             if (temp != null && temp.requiredPermission != null && !message.member.permissions.has(temp.requiredPermission)) { // Permission check
-                message.channel.send({ content: config.discord.bot.missing_permission.replace("{PERMISSION}", temp.requiredPermission) }); // Missing permission message
+                message.channel.send({ content: config.discord.bot.missing_permission.replace("{PERMISSION}", temp.requiredPermission) }); // Missing Permission message
                 return;
             };
         };
@@ -121,6 +126,7 @@ let loadCommands = (rootPath) => {
                     usage: null,
                     aliases: [],
                     requiredPermission: null,
+                    requiredRole: null,
                     path: path.split('\\').pop(),
                     size: 0,
                     depth: (!parent ? 0 : parent.depth),

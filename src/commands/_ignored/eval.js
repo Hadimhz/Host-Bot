@@ -34,5 +34,4 @@ module.exports.info = {
     name: "eval",
     description: "eval code.",
     requiredPermission: "ADMINISTRATOR",
-
 }

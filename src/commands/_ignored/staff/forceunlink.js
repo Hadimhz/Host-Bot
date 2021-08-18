@@ -1,9 +1,9 @@
 const { MessageEmbed } = require('discord.js')
 const userdb = require('../../../database/schemas/UserData')
-
+const config = require('../../../config.json')
 module.exports.run = async (client, message, args) => {
     try {
-        if (!args[0]) return message.reply('Who are you checking for user Data?')
+        if (!args[0]) return message.reply('Who are you unlinking')
         e = await message.channel.send(`Fetching users Data...`)
         setTimeout(() => {
             message.guild.members.fetch()
@@ -15,8 +15,13 @@ module.exports.run = async (client, message, args) => {
         });
         if(!userData) return e.edit('<@' + person + '> Doesn\'t have a account or Isn\'t linked')
         const embed = new MessageEmbed()
-        .setTitle(`${person.username || person.user.username}'s Old Data`)
-        .setDescription('```js\n' + userData + '```')
+        .setTitle(`${person.username || person.user.username}` + "'s Data")
+            .addField('UserID', `${userData.get('userID')}`)
+            .addField('Console ID', `${userData.get('consoleID')}`)
+            .addField('Email', `${userData.get('email')}`)
+            .addField('Username', `${userData.get('username')}`)
+            .addField('Creation Date', `${userData.get('createdTimestamp').toLocaleString()}`)
+            .setColor('BLURPLE')
         message.author.send({embeds: [embed]})
         message.channel.send('User Data Deleted, Sent a Dm with their data')
     } catch (err) {
@@ -29,5 +34,6 @@ module.exports.info = {
     name: "forceunlink",
     description: "Unlinks a User",
     requiredPermission: "ADMINISTRATOR",
+    requiredRole: config.discord.roles.botdev,
     aliases: []
 }

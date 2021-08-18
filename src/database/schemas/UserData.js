@@ -18,7 +18,7 @@ const UserDataSchema = new mongoose.Schema({
     // User's console username
     username: reqString,
 
-    // Timestamp when the account was created
+    // Timestamp when the accounts was created
     createdTimestamp: {
         type: mongoose.SchemaTypes.Date,
         required: true

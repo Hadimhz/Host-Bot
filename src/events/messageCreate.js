@@ -5,7 +5,17 @@ const { client } = require("../index");
 const chalk = require("chalk");
 
 client.on('messageCreate', async (message) => {
-    if (message.channel.type == "dm" || message.author.bot
+        if(message.channel.type == "DM") {
+            if(message.author.bot) return
+        const embed = new MessageEmbed()
+        .setTitle(`New DM From ${message.author.tag}`)
+        .setDescription(message.content.toString())
+        .setColor("GREEN")
+        .setFooter(`${message.author.id}`)
+        .setTimestamp()
+        return client.channels.cache.get(config.discord.channels.modLogs).send({embeds:[embed]})
+    }
+    if (message.channel.type == "DM" || message.author.bot
         || message.guild.id != config.discord.guild || !message.content.startsWith(config.discord.bot.prefix)) return;
     if(message.content.startsWith(config.discord.bot.prefix + 'prefix')) {
         return message.react('✅')

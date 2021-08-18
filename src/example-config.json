@@ -16,7 +16,8 @@
       "clientID": "Bot client ID",
       "clientSecret": "Bot client secret",
       "callbackURL": "callback url after logging into the site. should end with /api/callback",
-      "ownerID": "Owner ID (For owner only commands)"
+      "ownerID": "Owner ID (For owner only commands)",
+      "missing_role": "You require the `{ROLE}` role to use this command"
     },
     "channels": {
       "ticketVC": "Vc Channel ID Lists the number of tickets",
@@ -33,7 +34,8 @@
       "requestsChannel": "Channel that request are in. This isnt used yet but will be soon",
       "welcome": "Welcome channel ID",
       "invitechannel": "Invite logs channel ID",
-      "inviterewmsg": "Invite reward message channel ID"
+      "inviterewmsg": "Invite reward message channel ID",
+      "snipelogs": "Channel to log snipe purges"
     },
     "tickets": {
       "enabled": true,
@@ -50,7 +52,10 @@
       "bot": "Bot role ID",
       "staff": "Staff role ID (Used for staff commands)",
       "mute": "Muted role ID",
-      "botdev": "",
+      "botdev": "Bot Dev role ID",
+      "helper": "Helper role ID",
+      "mod": "mod role ID",
+      "admin": "admin role ID",
       "invites": {
         "5": "5+ invites role ID",
         "10": "10+ invites role ID",

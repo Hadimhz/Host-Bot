@@ -3,12 +3,12 @@ const chalk = require("chalk");
 const { MessageEmbed } = require('discord.js')
 const config = require('../config.json')
 client.on('messageDelete', async (message) => {
-
+    if (message.author == null || message.author.bot == true) return;
     let logChannel = client.channels.cache.get(config.discord.channels.mLogs);
 
     if (!message.content != 0 && logChannel) {
 
-        //if (message.author.bot) return;
+        if (message.author.bot) return;
         if (message.channel.type === 'dm') return;
         if (message.channel.type !== 'GUILD_TEXT') return;
         if (message.author == null) return;

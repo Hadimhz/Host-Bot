@@ -3,7 +3,7 @@ const config = require("../../config.json")
 module.exports.run = (client, message, args) => {
 
     let { log: parsed, findCommand } = require(ROOT_PATH + '/utils/commandHandler');
-
+    let rrole;
     let embed = new MessageEmbed()
         .setTitle("Commands Help!").setColor("#36393F").setDescription("Here is a list of commands that you can use! Use DBH!help <name> to get help with a specific command!")
         .setFooter(`Requested by ${message.author.tag}`).setTimestamp();
@@ -23,13 +23,15 @@ module.exports.run = (client, message, args) => {
 
             let aliases = "`" + cmd.aliases.join('`, `') + "`";
             let subCommands = cmd.subCommands != null ? `\`${cmd.subCommands.map(x => x.name).join('`, `')}\`` : null;
-
+            rrole = cmd.requiredRole == null ? "none" : cmd.requiredRole;
+            if(rrole != "none") rrole = message.guild.roles.cache.find(r => r.id === rrole);
             let help = [
                 `**name:** ${cmd.name}`,
                 `**description:** ${cmd.description}`,
                 cmd.aliases.length == 0 ? null : `**aliases:** ${aliases}`,
                 `**usage:** ${usage}`,
                 `**requiredPermission:** ${cmd.requiredPermission == null ? "none" : cmd.requiredPermission}`,
+                `**requiredRoles:** ${rrole}`,
                 subCommands != null ? `**subcommands:** ${subCommands}` : null
             ]
 
