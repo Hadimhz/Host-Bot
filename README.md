@@ -24,4 +24,4 @@ Do you want to help? If so, it's very simple, just follow these steps:
 
 If you need further info on rewrite please join out rewrite Discord server using [this](https://discord.gg/V3KvPQET5v) link.
 
-This bot uses [Solo](https://github.com/Hadimhz)'s command handler; You can check it [here](https://github.com/Hadimhz/Discord-Bot).
+This bot uses [Solo](https://github.com/Hadimhz)'s command handler. You can check it [here](https://github.com/Hadimhz/Discord-Bot).
