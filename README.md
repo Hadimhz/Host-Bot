@@ -4,7 +4,7 @@ This is DBH's Official Discord bot.
 
 ## Selfhosting
 
-- Make sure You have Node.JS v14 installed
+- Make sure You have Node.JS v16 installed
 - Download this repo by clicking the download code button or by executing `git clone https://github.com/DanBot-Hosting/bot-rewrite.git`
 - Make sure that `Guild Members` intent is enabled for your bot application
 - Rename example-config.json/example.env to config.json/.env and fill in all fields
