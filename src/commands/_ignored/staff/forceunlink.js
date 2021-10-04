@@ -9,20 +9,22 @@ module.exports.run = async (client, message, args) => {
             message.guild.members.fetch()
         }, 5000)
         const person = message.mentions.users.first() || await message.guild.members.cache.get(args[0]);
-        if(!person) return e.edit('User doesn\'t exist ')
+        if (!person) return e.edit('User doesn\'t exist ')
         const userData = await userdb.findOneAndDelete({
             userID: person.id
         });
-        if(!userData) return e.edit('<@' + person + '> Doesn\'t have a account or Isn\'t linked')
+        if (!userData) return e.edit('<@' + person + '> Doesn\'t have a account or Isn\'t linked')
         const embed = new MessageEmbed()
-        .setTitle(`${person.username || person.user.username}` + "'s Data")
+            .setTitle(`${person.username || person.user.username}` + "'s Data")
             .addField('UserID', `${userData.get('userID')}`)
             .addField('Console ID', `${userData.get('consoleID')}`)
             .addField('Email', `${userData.get('email')}`)
             .addField('Username', `${userData.get('username')}`)
             .addField('Creation Date', `${userData.get('createdTimestamp').toLocaleString()}`)
             .setColor('BLURPLE')
-        message.author.send({embeds: [embed]})
+        message.author.send({
+            embeds: [embed]
+        })
         message.channel.send('User Data Deleted, Sent a Dm with their data')
     } catch (err) {
         console.log(err)

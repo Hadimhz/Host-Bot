@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
         });
         if (!userData) return e.edit('You or the person you mentioned doesn\'t have any Data. Do they have a account?');
         const embed = new MessageEmbed()
-        .setTitle(`${person.username || person.user.username}` + "'s Data")
+            .setTitle(`${person.username || person.user.username}` + "'s Data")
             .addField('UserID', `${userData.get('userID')}`)
             .addField('Console ID', `${userData.get('consoleID')}`)
             .addField('Email', `${userData.get('email')}`)

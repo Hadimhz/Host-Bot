@@ -1,11 +1,11 @@
-## DanBotHostingStats
+## Host Bot
 
-This is DBH's Official Discord bot.
+A Bot for all your hosting needs. Allows Users to make accounts, Create servers and more all In discord! No need for Dashboards or other bots. Use this one!
 
 ## Selfhosting
 
 - Make sure You have Node.JS v16 installed
-- Download this repo by clicking the download code button or by executing `git clone https://github.com/DanBot-Hosting/bot-rewrite.git`
+- Download this repo by clicking the download code button or by executing `git clone https://github.com/Hadimhz/bot-rewrite.git`
 - Make sure that `Guild Members` intent is enabled for your bot application
 - Rename example-config.json/example.env to config.json/.env and fill in all fields
 - Once everything is done execute `npm install` to intall packages; to run the bot use `node .`
