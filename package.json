@@ -1,4 +1,8 @@
 {
+  "name": "host-bot",
+  "description": "A Bot for all your hosting needs. Allows Users to make accounts, Create servers and more all In discord! No need for Dashboards or other bots. Use this one!",
+  "version": "1.0.0",
+  "main": "src/index.js",
   "dependencies": {
     "chalk": "^4.1.1",
     "child_process": "^1.0.2",
@@ -15,5 +19,18 @@
     "nodemailer": "^6.6.3",
     "pm2": "^5.1.0",
     "validator": "^13.6.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hadimhz/bot-rewrite.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hadimhz/bot-rewrite/issues"
+  },
+  "homepage": "https://github.com/Hadimhz/bot-rewrite#readme"
 }
