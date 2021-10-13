@@ -34,7 +34,7 @@ module.exports.run = async (client, message, args) => {
     }).catch(e => { });
 
     // Tell the user to check the channel.
-    message.reply(`Please check <#${channel.id}> to create an account.`);
+    message.reply(`Please check <#${channel.id}> to link an account.`);
 
     let code = genPassword(20);
 
@@ -181,7 +181,7 @@ module.exports.run = async (client, message, args) => {
 
 
     msg.edit({
-        content: "Hello! You created an new account, Heres the login information",
+        content: "Hello! You have linked an account to your discord, Heres the login information",
         embeds: [new Discord.MessageEmbed()
             .setColor("GREEN")
             .setDescription("URL: " + config.pterodactyl.hosturl + "\n" + "Username: " + data.username
