@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js')
 const userdb = require('../../../database/schemas/UserData')
-const config = require('../../../config.json')
+const config = require(ROOT_PATH + "/../config.json");
 module.exports.run = async (client, message, args) => {
     try {
         if (!args[0]) return message.reply('Who are you unlinking')

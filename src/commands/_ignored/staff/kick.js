@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const config = require("../../../config.json")
+const config = require(ROOT_PATH + "/../config.json");
 module.exports.run = async (client, message, args) => {
 
     let user = message.mentions.users.first()

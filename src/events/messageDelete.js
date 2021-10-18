@@ -1,7 +1,7 @@
 const { client } = require("../index");
 const chalk = require("chalk");
 const { MessageEmbed } = require('discord.js')
-const config = require('../config.json')
+const config = require(ROOT_PATH + "/../config.json");
 client.on('messageDelete', async (message) => {
     if (message.author == null || message.author.bot == true) return;
     let logChannel = client.channels.cache.get(config.discord.channels.mLogs);

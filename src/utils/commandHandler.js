@@ -1,5 +1,5 @@
 const { Collection, Permissions } = require('discord.js');
-const config = require('../config.json');
+const config = require(ROOT_PATH + "/../config.json");
 const fs = require('fs');
 let log = {
     categories: [],

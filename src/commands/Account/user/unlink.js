@@ -1,5 +1,5 @@
 const userdb = require('../../../database/schemas/UserData')
-const config = require('../../../config.json')
+const config = require(ROOT_PATH + "/../config.json");
 const { MessageEmbed } = require('discord.js')
 module.exports.run = async (client, message, args) => {
     e = await message.channel.send('Checking DataBase...')

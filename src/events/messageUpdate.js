@@ -1,5 +1,5 @@
 const { client } = require("../index");
-const config = require('../config.json')
+const config = require(ROOT_PATH + "/../config.json");
 client.on('messageUpdate', async (oldMessage, newMessage) => {
     if (oldMessage.author == null || oldMessage.author.bot == true || !oldMessage.content || newMessage == null) return;
 

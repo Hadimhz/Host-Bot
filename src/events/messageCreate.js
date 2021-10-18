@@ -1,6 +1,6 @@
 const { findCommand } = require("../utils/commandHandler");
 const { MessageEmbed } = require("discord.js");
-const config = require("../config.json");
+const config = require(ROOT_PATH + "/../config.json");
 const { client } = require("../index");
 const chalk = require("chalk");
 

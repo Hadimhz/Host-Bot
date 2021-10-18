@@ -1,5 +1,5 @@
 const { client } = require('../index.js')
-const config = require('../config.json');
+const config = require(ROOT_PATH + "/../config.json");
 const { MessageEmbed } = require('discord.js');
 
 client.on('guildBanAdd', async (ban) => {

@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const userprem = require('../../../database/schemas/UserPrem')
 const userdb = require('../../../database/schemas/UserData')
-const config = require('../../../config.json')
+const config = require(ROOT_PATH + "/../config.json");
 module.exports.run = async (client, message, args) => {
     //Fetching the members so stuff doesn't come back as undefined
     message.guild.members.fetch()

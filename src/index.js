@@ -1,8 +1,9 @@
+global.ROOT_PATH = __dirname;
 
 const chalk = require('chalk');
 const fs = require('fs');
 const { loadCommands } = require('./utils/commandHandler');
-const config = require("./config.json"); // Edit example-config.json
+const config = require(ROOT_PATH + "/../config.json"); // Edit example-config.json
 require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
@@ -23,7 +24,6 @@ const client = new Discord.Client({
 client.messageSnipes = new Discord.Collection();
 
 exports.client = client;
-global.ROOT_PATH = __dirname;
 exports.panel = panel;
 
 const { parse, fetchNodes } = require('./utils/fetchNodes')

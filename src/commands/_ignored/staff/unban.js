@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const config = require("../../../config.json")
+const config = require(ROOT_PATH + "/../config.json");
 module.exports.run = async (client, message, args) => {
 
         if(!args[0]) return message.channel.send(`🚧 | Specify **ID** of the **user** you want to **unban**.`)

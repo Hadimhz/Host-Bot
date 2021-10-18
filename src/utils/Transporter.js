@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const config = require('../config.json');
+const config = require(ROOT_PATH + "/../config.json");
 const chalk = require('chalk');
 
 class Transporter {

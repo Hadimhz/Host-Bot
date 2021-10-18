@@ -1,4 +1,4 @@
-const config = require("../config.json");
+const config = require(ROOT_PATH + "/../config.json");
 const { client, updateCache } = require("../index");
 const mongo = require("../utils/mongo");
 const chalk = require("chalk");

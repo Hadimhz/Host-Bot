@@ -1,5 +1,5 @@
 const userdb = require('../../../database/schemas/UserData')
-const config = require('../../../config.json');
+const config = require(ROOT_PATH + "/../config.json");;
 const { panel } = require('../../../index');
 const Discord = require('discord.js');
 const { genPassword } = require('./user');

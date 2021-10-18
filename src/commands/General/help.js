@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js')
-const config = require("../../config.json")
+const config = require(ROOT_PATH + "/../config.json");
 module.exports.run = (client, message, args) => {
 
     let { log: parsed, findCommand } = require(ROOT_PATH + '/utils/commandHandler');
