@@ -14,7 +14,7 @@ let toPush = (input, start) => {
         };
     };
 
-    if (input.length != null) {
+    if (Array.isArray(input)) {
         input = input.map(x => {
             x = x.attributes;
             if (x.relationships) {
@@ -50,7 +50,7 @@ let toPush = (input, start) => {
     };
 
     if (input != null)
-        toReturn.data = (input.length == 1 ? input[0] : input);
+        toReturn.data = input;
 
     toReturn.info = {
         total_amount: (input != null ? (input.length != null ? input.length : 1) : 0),

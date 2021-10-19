@@ -3,8 +3,8 @@ const fetch = require('node-fetch');
 
 /**
  * @param {Object} [options] What to include with request.
- * @param {Boolean} [options.nodes] Include all nodes using that Location.
- * @param {Boolean} [options.servers] Include all serrvers using that Location.
+ * @param {Boolean} [options.eggs] Include all eggs using that Location.
+ * @param {Boolean} [options.servers] Include all servers using that Location.
  * */
 
 function getAllNests(options) {
