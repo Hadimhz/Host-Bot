@@ -6,7 +6,3 @@ config.json
 log.json
 test.js
 .idea
-tickets
-interactionCreate.js
-WordBlacklist.js
-vote
