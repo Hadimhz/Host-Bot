@@ -5,7 +5,7 @@
   "donationlink": "The link to buy premium servers",
   "pterodactyl": {
     "hosturl": "Your pterodactyl panel. dont forget the https",
-    "apikey": "your admin api key",
+    "apikey": "your admin api key"
   },
   "discord": {
     "guild": "Main Guild ID",
