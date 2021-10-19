@@ -8,8 +8,9 @@ const fetchGamingNodes = (allNodes) => allNodes.data.filter(x => x.description?.
 
 const fetchStorageNodes = (allNodes) => allNodes.data.filter(x => x.description?.toLowerCase()?.includes('storage')).map(node => node.id);
 
-const fetchEggs = async () => (await panel.fetchNests({eggs: true})).data.map(nest => nest.extras.eggs.map(({name, nest: nestID, id}) => ({id, nestID,name})))
-.reduce((a, b) => a.concat(b), []);
+const fetchEggs = async () => (await panel.fetchNests({ eggs: true })).data.map(nest =>
+    nest.extras.eggs.map(({ name, startup, docker_image: image, nest: nestID, id }) => ({ id, nestID, name, startup, image })))
+    .reduce((a, b) => a.concat(b), []);
 
 const parseNodes = (nodes) => ({
     botNodes: fetchBotNodes(nodes),
