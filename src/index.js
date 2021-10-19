@@ -3,7 +3,7 @@ global.ROOT_PATH = __dirname;
 const chalk = require('chalk');
 const fs = require('fs');
 const { loadCommands } = require('./utils/commandHandler');
-const config = require(ROOT_PATH + "/../config.json"); // Edit example-config.json
+const config = require(ROOT_PATH + "/../config.json"); // Edit example-config.json and example.env
 require("dotenv").config();
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
@@ -12,13 +12,8 @@ const cache = require('./utils/Cache');
 panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
 const client = new Discord.Client({
-    //I've removed any intents that seemd useless, Add them as you need
-    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES", "GUILD_MESSAGE_REACTIONS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INVITES", "DIRECT_MESSAGES"],
-    //The bot can only ping users, This way if someone founds a exploit it can't ping that many users
-    allowedMentions: {
-        parse: ['users'],
-        repliedUser: true
-    },
+    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INVITES", "DIRECT_MESSAGES", "GUILD_EMOJIS_AND_STICKERS", "GUILD_MESSAGE_REACTIONS"],
+    allowedMentions: { parse: ['users'], repliedUser: true },
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
 client.messageSnipes = new Discord.Collection();
@@ -29,18 +24,17 @@ exports.panel = panel;
 const { parse, fetchNodes, fetchEggs } = require('./utils/panelUtils')
 
 const updateCache = async () => {
-    var today = new Date();
+    let today = new Date();
     let nodes = await fetchNodes();
     const { botNodes, gamingNodes, storageNodes } = parse(nodes);
 
     cache.set('botNodeIds', botNodes);
     cache.set('gamingNodeIds', gamingNodes);
     cache.set('storageNodeIds', storageNodes);
-    
     cache.set('eggs', await fetchEggs());
 
     console.log(chalk.green("[CACHE]"), "Updated Cache! Time: " + today.getHours() + ":" + today.getMinutes(), `(${nodes.data.length} nodes and ${cache.get('eggs').length} eggs)`);
-};
+}
 
 exports.updateCache = updateCache;
 
@@ -55,7 +49,6 @@ events.forEach(x => {
 });
 
 loadCommands(`${ROOT_PATH}/commands`).then(x => {
-    // console.log(x);
     fs.writeFileSync(ROOT_PATH + '/log.json', JSON.stringify(x.logs, null, 2));
     client.commands = x.commandsCol;
 
