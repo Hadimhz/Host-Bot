@@ -6,7 +6,6 @@
   "pterodactyl": {
     "hosturl": "Your pterodactyl panel. dont forget the https",
     "apikey": "your admin api key",
-    "apikeyclient": "your client api key"
   },
   "discord": {
     "guild": "Main Guild ID",
@@ -75,15 +74,5 @@
     "user": "SMTP Username",
     "password": "SMTP password",
     "from": "Email sent from"
-  },
-  "ssh": {
-    "host": "Reverse proxy IP",
-    "user": "root",
-    "password": "Reverse proxy root password",
-    "port": 22
-  },
-  "ports": {
-    "webPort": 1144,
-    "APIPort": 1145
   }
 }
