@@ -13,8 +13,6 @@
       "prefix": "Bots Prefix",
       "missing_permission": "You require the `{PERMISSION}` permission to use this command.",
       "clientID": "Bot client ID",
-      "clientSecret": "Bot client secret",
-      "callbackURL": "callback url after logging into the site. should end with /api/callback",
       "ownerID": "Owner ID (For owner only commands)",
       "missing_role": "You require the `{ROLE}` role to use this command"
     },
@@ -27,14 +25,14 @@
       "serversVC": "Vc or Channel ID It shows how many servers are being ran on the host",
       "clientsVC": "Vc or Channel ID it shows how many people are registed to the host",
       "boostsVC": "Vc or Channel ID shows how many people have boosted the server",
-      "mLogs": "Message logs channel ID",
-      "oLogs": "Other logs channel ID",
+      "messageLogs": "Message logs channel ID",
+      "otherLogs": "Other logs channel ID",
       "modLogs": "Mod logs channel ID",
-      "requestsChannel": "Channel that request are in. This isnt used yet but will be soon",
       "welcome": "Welcome channel ID",
       "invitechannel": "Invite logs channel ID",
       "inviterewmsg": "Invite reward message channel ID",
-      "snipelogs": "Channel to log snipe purges"
+      "snipelogs": "Channel to log snipe purges",
+      "accountCreation": "The category ID in which the channels to create user accounts will be made"
     },
     "tickets": {
       "enabled": true,
@@ -42,8 +40,7 @@
       "report": "Category for reporting Bugs or users",
       "serverissues": "Category for Issues with the users server",
       "accountissues": "Category for Issues with the users account",
-      "donations": "Category for when a user donates",
-      "accountCreation": "The category ID in which the channels to create user accounts will be made"
+      "donations": "Category for when a user donates"
     },
     "roles": {
       "member": "Member role ID",
