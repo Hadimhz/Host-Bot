@@ -1,11 +1,8 @@
 const config = require(ROOT_PATH + "/../config.json");
-const {
-    MessageEmbed
-} = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const Discord = require('discord.js')
 module.exports.run = async (client, message, args) => {
-    if (args[0] != null) {
-        console.log(args)
+    if (args[0]) {
         if (args[0].toLowerCase() == 'dump' && message.member.roles.cache.get(config.discord.roles.botdev) != null) {
             let file = new Discord.MessageAttachment(Buffer.from(JSON.stringify(Array.from(client.messageSnipes)), "utf8"), "Snipes-Dump.json");
             message.author.send({
@@ -67,6 +64,10 @@ module.exports.run = async (client, message, args) => {
             return;
         }
 
+        let isntNumber = isNaN(args[0])
+        if (isntNumber == true) return message.channel.send({
+            embeds: [new MessageEmbed().setDescription(`Please provide a number!`)]
+        })
     }
     let embed3 = new MessageEmbed().setDescription(`Theres nothing to snipe`)
 
@@ -75,8 +76,6 @@ module.exports.run = async (client, message, args) => {
     if (snipe == null) return message.channel.send({
         embeds: [embed3]
     })
-    let isntNumber = isNaN(args[0])
-    if(isntNumber == true) return message.channel.send({embeds: [new MessageEmbed().setDescription(`Please provide a number!`)]})
 
     snipe = [...snipe.values()]
 
@@ -106,7 +105,7 @@ module.exports.run = async (client, message, args) => {
     message.channel.send({
         embeds: [embed]
     });
-    }
+}
 
 
 module.exports.info = {
