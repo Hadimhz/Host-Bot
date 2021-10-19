@@ -26,17 +26,20 @@ client.messageSnipes = new Discord.Collection();
 exports.client = client;
 exports.panel = panel;
 
-const { parse, fetchNodes } = require('./utils/fetchNodes')
+const { parse, fetchNodes, fetchEggs } = require('./utils/panelUtils')
 
 const updateCache = async () => {
     var today = new Date();
-    const { botNodes, gamingNodes, storageNodes } = parse(await fetchNodes());
+    let nodes = await fetchNodes();
+    const { botNodes, gamingNodes, storageNodes } = parse(nodes);
 
     cache.set('botNodeIds', botNodes);
     cache.set('gamingNodeIds', gamingNodes);
     cache.set('storageNodeIds', storageNodes);
+    
+    cache.set('eggs', await fetchEggs());
 
-    console.log(chalk.green("[CACHE]"), "Updated Cache! Time: " + today.getHours() + ":" + today.getMinutes())
+    console.log(chalk.green("[CACHE]"), "Updated Cache! Time: " + today.getHours() + ":" + today.getMinutes(), `(${nodes.data.length} nodes and ${cache.get('eggs').length} eggs)`);
 };
 
 exports.updateCache = updateCache;
