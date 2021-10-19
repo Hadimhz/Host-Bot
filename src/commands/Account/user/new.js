@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
     })
 
     // Locate the category
-    let category = message.guild.channels.cache.get(config.discord.tickets.accountCreation)
+    let category = message.guild.channels.cache.get(config.discord.channels.accountCreation)
 
     let channel = await message.guild.channels.create(message.author.tag, {
         parent: category.id,

@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js')
 const config = require(ROOT_PATH + "/../config.json");
 client.on('messageDelete', async (message) => {
     if (message.author == null || message.author.bot == true) return;
-    let logChannel = client.channels.cache.get(config.discord.channels.mLogs);
+    let logChannel = client.channels.cache.get(config.discord.channels.messageLogs);
 
     if (!message.content != 0 && logChannel) {
 
