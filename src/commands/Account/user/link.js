@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
     })
 
     // Locate the category
-    let category = message.guild.channels.cache.get(config.discord.categories.accountCreation)
+    let category = message.guild.channels.cache.get(config.discord.channels.accountCreation)
 
     let channel = await message.guild.channels.create(message.author.tag, {
         parent: category.id,
@@ -160,8 +160,6 @@ module.exports.run = async (client, message, args) => {
         }
     });
 
-
-
     msg.edit({
         content: `<@!${message.member.id}>`,
         embeds: [msg.embeds[0]
@@ -170,22 +168,20 @@ module.exports.run = async (client, message, args) => {
             .setFooter('').setTimestamp()]
     });
 
-    await userdb.findOneAndRemove({ email: questions.find(question => question.id == 'email').value.toLowerCase() })
-    await userdb.create({
-        userID: message.author.id,
-        consoleID: data.id,
-        email: data.email,
-        username: data.username,
-        createdTimestamp: Date.now(),
-    })
-
+    await userdb.findOneAndUpdate({ email: questions.find(question => question.id == 'email').value.toLowerCase() }, {
+            userID: message.author.id,
+            consoleID: data.id,
+            email: data.email,
+            username: data.username,
+            createdTimestamp: Date.now(),
+        }, {  upsert: true });
 
     msg.edit({
-        content: "Hello! You created an new account, Heres the login information",
+        content: "Hello! You linked an account, Heres the login information",
         embeds: [new Discord.MessageEmbed()
             .setColor("GREEN")
-            .setDescription("URL: " + config.pterodactyl.hosturl + "\n" + "Username: " + data.username
-                + "\n" + "Email: " + data.email)
+            .setDescription("URL: " + config.pterodactyl.hosturl + "\n" + "Username: " + data[0].username
+                + "\n" + "Email: " + data[0].email)
             .setFooter("Please note: It is recommended that you change the password")]
     })
 
