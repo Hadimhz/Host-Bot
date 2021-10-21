@@ -31,8 +31,11 @@ function createServer(ServerName, UserID, NestID, EggID, Location, RAM, Swap, Di
         backups: 0
     };
     return new Promise(async (resolve, reject) => {
+        let egg;
         if (DockerImage == null || StartupCmd == null) {
-            let egg = await getNest(NestID);
+            egg = await getNest(NestID, {
+                eggs: true
+            });
             if (egg.errors != null) {
                 return resolve({
                     success: false,
