@@ -12,7 +12,7 @@ panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
 const client = new Discord.Client({
     //I've removed any intents that seemd useless, Add them as you need
-    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES", "GUILD_MESSAGE_REACTIONS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INVITES", "DIRECT_MESSAGES"],
+    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INVITES", "DIRECT_MESSAGES"],
     //The bot can only ping users, This way if someone founds a exploit it can't ping that many users
     allowedMentions: {
         parse: ['users'],
