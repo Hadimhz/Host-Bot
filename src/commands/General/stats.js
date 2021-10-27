@@ -8,6 +8,8 @@ module.exports.run = async (client, message, args) => {
     const hours = (d.hours() == 1) ? `${d.hours()} hour` : `${d.hours()} hours`;
     const minutes = (d.hours() == 1) ? `${d.minutes()} minutes` : `${d.minutes()} minutes`;
     const seconds = (d.hours() == 1) ? `${d.seconds()} seconds` : `${d.seconds()} seconds`;
+    const ramUsed = process.memoryUsage().heapUsed / 1024 / 1024;
+    
     const clientStats = stripIndent`
     Users     :: ${message.client.users.cache.size}
     Channels  :: ${message.client.channels.cache.size}
@@ -20,7 +22,7 @@ module.exports.run = async (client, message, args) => {
     Cores     :: ${cpu.count()}
     CPU Usage :: ${await cpu.usage()} %
     RAM       :: ${totalMemMb} MB
-    RAM Usage :: ${usedMemMb} MB 
+    RAM Usage :: ${Math.round(ramUsed * 100) / 100} MB 
     `;
     let now = Date.now()
     let msg = await message.channel.send({embeds: [new MessageEmbed().setTitle("Pinging...")]})
