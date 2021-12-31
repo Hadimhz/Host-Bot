@@ -5,7 +5,7 @@ A Bot for all your hosting needs. Allows Users to make accounts, Create servers 
 ## Selfhosting
 
 - Make sure You have Node.JS v16 installed
-- Download this repo by clicking the download code button or by executing `git clone https://github.com/Hadimhz/Host-Bot.git`
+- Download this repo by clicking the download code button or by executing `git clone https://github.com/Hadimhz/bot-rewrite.git`
 - Make sure that `Guild Members` intent is enabled for your bot application
 - Rename example-config.json/example.env to config.json/.env and fill in all fields
 - Once everything is done execute `npm install` to intall packages; to run the bot use `node .`
@@ -21,6 +21,8 @@ Do you want to help? If so, it's very simple, just follow these steps:
 - And that's how You do it. Now wait for us to review it :D
 
 ## Misc
+
+If you decide to use this bot, You must give credit to the people that have worked on. Not doing so will void the LICENSE set in place.
 
 If you need further info on rewrite please join out rewrite Discord server using [this](https://discord.gg/V3KvPQET5v) link.
 
