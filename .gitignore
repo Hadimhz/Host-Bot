@@ -1,8 +1,8 @@
-node_modules
-package-lock.json
-config.json
 .git
 .env
-log.json
-test.js
 .idea
+
+node_modules
+package-lock.json
+log.json
+config.json

@@ -3,22 +3,21 @@
   "description": "A Bot for all your hosting needs. Allows Users to make accounts, Create servers and more all In discord! No need for Dashboards or other bots. Use this one!",
   "version": "1.0.0",
   "main": "src/index.js",
-  
   "dependencies": {
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "child_process": "^1.0.2",
-    "common-tags": "^1.8.0",
-    "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0",
-    "humanize-duration": "^3.27.0",
-    "jsdom": "^16.6.0",
-    "marked": "^2.1.3",
+    "common-tags": "^1.8.2",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "humanize-duration": "^3.27.1",
+    "jsdom": "^19.0.0",
+    "marked": "^4.0.12",
     "moment": "^2.29.1",
-    "mongoose": "^5.13.3",
-    "node-fetch": "^2.6.1",
-    "node-os-utils": "^1.3.5",
-    "nodemailer": "^6.6.3",
-    "validator": "^13.6.0"
+    "mongoose": "^6.2.1",
+    "node-fetch": "^3.2.0",
+    "node-os-utils": "^1.3.6",
+    "nodemailer": "^6.7.2",
+    "validator": "^13.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,10 +1,10 @@
 global.ROOT_PATH = __dirname;
+require("dotenv").config();
 
 const chalk = require('chalk');
 const fs = require('fs');
 const { loadCommands } = require('./utils/commandHandler');
-const config = require(ROOT_PATH + "/../config.json"); // Edit example-config.json and example.env
-require("dotenv").config();
+const config = require(ROOT_PATH + "/../config.json"); // Edit example-config.json
 const Discord = require("discord.js");
 const panel = require('./wrapper/index').Application;
 const cache = require('./utils/Cache');
@@ -12,10 +12,11 @@ const cache = require('./utils/Cache');
 panel.login(config.pterodactyl.hosturl, config.pterodactyl.apikey);
 
 const client = new Discord.Client({
-    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_INVITES", "DIRECT_MESSAGES", "GUILD_EMOJIS_AND_STICKERS", "GUILD_MESSAGE_REACTIONS"],
+    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_BANS"],
     allowedMentions: { parse: ['users'], repliedUser: true },
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
+
 client.messageSnipes = new Discord.Collection();
 
 exports.client = client;
@@ -32,7 +33,7 @@ const updateCache = async () => {
     cache.set('gamingNodeIds', gamingNodes);
     cache.set('storageNodeIds', storageNodes);
     cache.set('eggs', await fetchEggs());
-    
+
     console.log(`${chalk.green("[CACHE]")} Updated Cache! Time: ${today.getHours()%12}:${today.getMinutes()} ${(today.getHours() >= 12 ? "PM" : "AM")} (${nodes.data.length} nodes and ${cache.get('eggs').length} eggs)`);
 }
 
