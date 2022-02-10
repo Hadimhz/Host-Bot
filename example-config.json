@@ -9,6 +9,7 @@
   },
   "discord": {
     "guild": "Main Guild ID",
+    "welcomeMessage": "Welcome {member} how are you?",
     "bot": {
       "prefix": "Bots Prefix",
       "missing_permission": "You require the `{PERMISSION}` permission to use this command.",
