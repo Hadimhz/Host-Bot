@@ -28,7 +28,7 @@ module.exports.run = async (client, message, args) => {
         return;
     });
 
-    message.reply("Check your DMs! 📬");
+    message.reply("Check your DMs!");
 
     const password = genPassword();
 
