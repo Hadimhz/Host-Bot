@@ -32,8 +32,8 @@ const updateCache = async () => {
     cache.set('gamingNodeIds', gamingNodes);
     cache.set('storageNodeIds', storageNodes);
     cache.set('eggs', await fetchEggs());
-
-    console.log(chalk.green("[CACHE]"), "Updated Cache! Time: " + today.getHours() + ":" + today.getMinutes(), `(${nodes.data.length} nodes and ${cache.get('eggs').length} eggs)`);
+    
+    console.log(`${chalk.green("[CACHE]")} Updated Cache! Time: ${today.getHours()%12}:${today.getMinutes()} ${(today.getHours() >= 12 ? "PM" : "AM")} (${nodes.data.length} nodes and ${cache.get('eggs').length} eggs)`);
 }
 
 exports.updateCache = updateCache;
