@@ -33,7 +33,6 @@ module.exports.run = async (client, message, args) => {
     .addField(`> 🤖 Bot Latency:`, `**${Math.round(Date.now() - now)}ms**`, true)
     .addField(`Client`, `\`\`\`asciidoc\n${clientStats}\`\`\``)
     .addField(`Server`, `\`\`\`asciidoc\n${serverStats}\`\`\``)
-    .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
     .setTimestamp()
     .setColor('#36393F');
     msg.edit({embeds: [embed]});

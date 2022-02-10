@@ -100,7 +100,8 @@ module.exports.run = async (client, message, args) => {
     const embed = new MessageEmbed()
         .setTitle(`Message ${snipedMessage.action} by ${snipedMessage.member.user.tag}`)
         .setDescription("`" + snipedMessage.message + "`")
-        .setFooter(`${number + 1}/${snipe.length}`).setTimestamp(snipedMessage.timestamp)
+        .setFooter({text: `${number + 1}/${snipe.length}`})
+        .setTimestamp(snipedMessage.timestamp)
         .setColor("GREEN");
     message.channel.send({
         embeds: [embed]

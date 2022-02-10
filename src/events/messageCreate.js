@@ -5,13 +5,13 @@ const { client } = require("../index");
 const chalk = require("chalk");
 
 client.on('messageCreate', async (message) => {
-        if(message.channel.type == "DM") {
+        if(message.channel.type == "DM" && config.discord.channels.modLogs) {
             if(message.author.bot) return
         const embed = new MessageEmbed()
         .setTitle(`New DM From ${message.author.tag}`)
         .setDescription(message.content.toString())
         .setColor("GREEN")
-        .setFooter(`${message.author.id}`)
+        .setFooter({text: `${message.author.id}`})
         .setTimestamp()
         return client.channels.cache.get(config.discord.channels.modLogs).send({embeds:[embed]})
     }
@@ -42,7 +42,7 @@ client.on('messageCreate', async (message) => {
                         .setTitle(commandTree.join(" ") + "'s subcommands")
                         .setColor("PURPLE")
                         .setDescription(cmd.subCommands.map(x => `**${x.name}** - \`${x.description}\`\n*usage:* \`${x.usage}\``).join('\n\n'))
-                        .setFooter(`Executed by ${message.author.tag}`)
+                        .setFooter({text: `Executed by ${message.author.tag}`})
                         .setTimestamp()
                 ]
             });

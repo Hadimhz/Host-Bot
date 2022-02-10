@@ -5,8 +5,11 @@ module.exports.run = (client, message, args) => {
     let { log: parsed, findCommand } = require(ROOT_PATH + '/utils/commandHandler');
     let rrole;
     let embed = new MessageEmbed()
-        .setTitle("Commands Help!").setColor("#36393F").setDescription(`Here is a list of commands that you can use! Use \`${config.discord.bot.prefix}help <name>\` to get help with a specific command!`)
-        .setFooter(`Requested by ${message.author.tag}`).setTimestamp();
+        .setTitle("Commands Help!")
+        .setColor("#36393F")
+        .setDescription(`Here is a list of commands that you can use! Use \`${config.discord.bot.prefix}help <name>\` to get help with a specific command!`)
+        .setFooter({text: `Requested by ${message.author.tag}`})
+        .setTimestamp();
 
     if (args[0] == null) {
         for (const category of parsed.categories.filter(x => x.name != '_ignored')) {

@@ -21,7 +21,7 @@ client.on('messageDelete', async (message) => {
             .addField("Author ", `${message.author.tag} (ID: ${message.author.id})`)
             .addField("Message Content:", `${descriptionfix}`)
             .setTimestamp()
-            .setFooter("Message delete in " + message.channel.name);
+            .setFooter({text: "Message delete in " + message.channel.name});
         logChannel.send({ embeds: [embed] });
 
     }

@@ -100,7 +100,7 @@ module.exports.run = async (client, message, args) => {
                 embeds: [new Discord.MessageEmbed()
                     .setColor(0x36393e)
                     .setDescription(question.question)
-                    .setFooter("You can type 'cancel' to cancel the request")]
+                    .setFooter({text: "You can type 'cancel' to cancel the request"})]
             });
         } else {
             msg.edit({
@@ -160,7 +160,7 @@ module.exports.run = async (client, message, args) => {
         embeds: [msg.embeds[0]
             .setDescription('Attempting to create an account for you...\n\n>>> '
                 + questions.map(question => `**${question.id}:** ${question.value.toLowerCase()}`).join('\n'))
-            .setFooter('').setTimestamp()]
+            .setFooter({text: ''}).setTimestamp()]
     });
 
     const data = {
@@ -195,7 +195,7 @@ module.exports.run = async (client, message, args) => {
                         .setColor("GREEN")
                         .setDescription("URL: " + config.pterodactyl.hosturl + "\n" + "Username: " + data.username
                             + "\n" + "Email: " + data.email + " \nPassword: " + data.password)
-                        .setFooter("Please note: It is recommended that you change the password")]
+                        .setFooter({text: "Please note: It is recommended that you change the password"})]
                 })
 
                 channel.send('**You have 30mins to keep note of this info before the channel is deleted.**')
@@ -211,13 +211,15 @@ module.exports.run = async (client, message, args) => {
                         .setColor("RED")
                         .setTitle("An error has occured:")
                         .setDescription("**ERRORS:**\n\n● " + user.error.map(error => error.detail.replace('\n', ' ')).join('\n● '))
-                        .setTimestamp().setFooter('Deleting in 30 seconds...')
+                        .setTimestamp()
+                        .setFooter({text: 'Deleting in 30 seconds...'})
                 } else {
                     errEmbed
                         .setColor("RED")
                         .setTitle("An error has occured:")
                         .setDescription("**ERROR:**\n\n● " + user.error.detail)
-                        .setTimestamp().setFooter('Deleting in 30 seconds...')
+                        .setTimestamp()
+                        .setFooter({text: 'Deleting in 30 seconds...'})
                 }
 
                 msg.edit({

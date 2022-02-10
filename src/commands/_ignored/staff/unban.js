@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send(`✅ | Succesfully unbanned user **${member.tag}**.`)
 
                 const embed = new Discord.MessageEmbed()
-                .setAuthor(`${client.user.username} | Unban`, client.user.avatarURL())
+                .setAuthor({name: `${client.user.username} | Unban`, iconURL: client.user.avatarURL()})
                 .addField(`✅ | Unban`, `> Moderator: **${message.author.tag}**\n> User Unbanned: **${member.tag}**\n> Reason: **${reason || 'None'}**`)
                 .setThumbnail(`${message.guild.iconURL({ dynamic:true })}`)
                 .setColor(message.guild.me.displayHexColor)

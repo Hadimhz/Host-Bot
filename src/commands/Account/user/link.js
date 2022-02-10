@@ -98,7 +98,7 @@ module.exports.run = async (client, message, args) => {
                 embeds: [new Discord.MessageEmbed()
                     .setColor(0x36393e)
                     .setDescription(question.question)
-                    .setFooter("You can type 'cancel' to cancel the request")]
+                    .setFooter({text: "You can type 'cancel' to cancel the request"})]
             });
         } else {
             msg.edit({
@@ -165,7 +165,7 @@ module.exports.run = async (client, message, args) => {
         embeds: [msg.embeds[0]
             .setDescription('Attempting to link your account...\n\n>>> '
                 + questions.map(question => `**${question.id}:** ${question.value.toLowerCase()}`).join('\n'))
-            .setFooter('').setTimestamp()]
+            .setFooter({text: ""}).setTimestamp()]
     });
 
     await userdb.findOneAndUpdate({ email: questions.find(question => question.id == 'email').value.toLowerCase() }, {
@@ -182,7 +182,7 @@ module.exports.run = async (client, message, args) => {
             .setColor("GREEN")
             .setDescription("URL: " + config.pterodactyl.hosturl + "\n" + "Username: " + data[0].username
                 + "\n" + "Email: " + data[0].email)
-            .setFooter("Please note: It is recommended that you change the password")]
+            .setFooter({text: "Please note: It is recommended that you change the password"})]
     })
 
 }

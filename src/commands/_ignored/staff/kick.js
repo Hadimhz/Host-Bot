@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
             message.channel.send(`✅ | Succesfully kicked user **${user.tag}**.`)
 
             const embed = new Discord.MessageEmbed()
-            .setAuthor(`${client.user.username} | Kick`, client.user.avatarURL() || "https://cdn.discordapp.com/embed/avatars/0.png")
+            .setAuthor({name: `${client.user.username} | Kick`, iconURL: client.user.avatarURL()})
             .addField(`✅ | Kick`, `> Moderator: **${message.author.tag}**\n> User Kicked: **${user.tag}**\n> Reason: **${reason || 'None'}**`)
             .setThumbnail(`${message.guild.iconURL({ dynamic:true }) || "https://cdn.discordapp.com/embed/avatars/0.png"}`)
             .setColor(message.guild.me.displayHexColor)
