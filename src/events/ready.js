@@ -1,6 +1,6 @@
 const config = require(ROOT_PATH + "/../config.json");
 const { client, updateCache } = require("../index");
-const mongo = require("../utils/mongo");
+const mongo = require("../database/mongo");
 const chalk = require("chalk");
 
 client.on('ready', async () => {
