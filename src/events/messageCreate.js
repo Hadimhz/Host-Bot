@@ -17,9 +17,8 @@ client.on('messageCreate', async (message) => {
     }
     if (message.channel.type == "DM" || message.author.bot
         || message.guild.id != config.discord.guild || !message.content.startsWith(config.discord.bot.prefix)) return;
-    if(message.content.startsWith(config.discord.bot.prefix + 'prefix')) {
-        return message.react('✅')
-    }
+    if(message.content.startsWith(config.discord.bot.prefix + 'prefix')) 
+     
     let args = message.content.trim().slice(config.discord.bot.prefix.length).split(/ +/);
 
     let cmd = findCommand([...args], client.commands, message);
