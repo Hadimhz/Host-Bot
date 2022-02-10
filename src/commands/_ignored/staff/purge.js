@@ -3,7 +3,7 @@ const config = require(ROOT_PATH + "/../config.json");
 module.exports.run = async (client, message, args) => {
 
 if(!message.member.roles.cache.find(r => r.id === config.DiscordRoles.staff)) {
-            return message.channel.send(`🚧 | You **do not** have enough **permissions** to use this **command**.`)
+            return message.channel.send(`You **do not** have enough **permissions** to use this **command**.`)
         }
 
         let prefix = config.prefix
