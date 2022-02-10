@@ -14,7 +14,8 @@
       "missing_permission": "You require the `{PERMISSION}` permission to use this command.",
       "clientID": "Bot client ID",
       "ownerID": "Owner ID (For owner only commands)",
-      "missing_role": "You require the `{ROLE}` role to use this command"
+      "missing_role": "You require the `{ROLE}` role to use this command",
+      "token": "Bot token"
     },
     "channels": {
       "ticketVC": "Vc Channel ID Lists the number of tickets",

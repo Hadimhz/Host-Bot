@@ -58,4 +58,4 @@ loadCommands(`${ROOT_PATH}/commands`).then(x => {
     console.log(chalk.bgCyan("[CommandHandler]"), `Loaded a total of ${x.logs.stats.commands} commands in ${x.logs.stats.categories} categories.`);
 });
 
-client.login(process.env.Token); // Login to Discord
+client.login(config.discord.bot.token); // Login to Discord
